@@ -102,7 +102,10 @@ export function ModalFornecedor({
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
             <FormField
               control={form.control}
               name="nome"
