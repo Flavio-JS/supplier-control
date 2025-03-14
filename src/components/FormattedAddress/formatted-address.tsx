@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Info } from "lucide-react";
-import { Endereco } from "../../Fornecedores/fornecedor.type";
 import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "../Tooltip/tooltip";
+} from "../ui/Tooltip/tooltip";
+import { Endereco } from "../Fornecedores/fornecedor.type";
 
 export const FormattedAddress = ({ value }: { value: Endereco }) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);

@@ -1,3 +1,13 @@
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../ui/AlertDialog/alert-dialog";
+
 import { useState, useEffect, SetStateAction } from "react";
 import { Plus, Search } from "lucide-react";
 import { TabelaFornecedores } from "../TabelaFornecedores/tabela-fornecedores";
@@ -74,6 +84,12 @@ export function Fornecedores() {
     null
   );
 
+  // Estados para o AlertDialog
+  const [alertAberto, setAlertAberto] = useState(false);
+  const [alertTitulo, setAlertTitulo] = useState("");
+  const [alertMensagem, setAlertMensagem] = useState("");
+  const [alertTipo, setAlertTipo] = useState<"sucesso" | "erro">("sucesso");
+
   // Carregar dados iniciais da API do json-server
   useEffect(() => {
     axios
@@ -119,6 +135,22 @@ export function Fornecedores() {
     setFornecedorAtual(null);
   };
 
+  const exibirAlert = (
+    titulo: string,
+    mensagem: string,
+    tipo: "sucesso" | "erro"
+  ) => {
+    setAlertTitulo(titulo);
+    setAlertMensagem(mensagem);
+    setAlertTipo(tipo);
+    setAlertAberto(true);
+
+    // Fechar o AlertDialog automaticamente após 3 segundos
+    setTimeout(() => {
+      setAlertAberto(false);
+    }, 3000);
+  };
+
   const salvarFornecedor = (fornecedor: Fornecedor) => {
     if (fornecedor.id) {
       // Editar fornecedor existente
@@ -130,10 +162,12 @@ export function Fornecedores() {
           );
           setFornecedores(fornecedoresAtualizados);
           setFornecedoresFiltrados(fornecedoresAtualizados);
-          fecharModal(); // Fechar o modal após a edição
+          fecharModal();
+          exibirAlert("Sucesso", "Fornecedor editado com sucesso!", "sucesso");
         })
         .catch((error) => {
           console.error("Erro ao editar fornecedor:", error);
+          exibirAlert("Erro", "Erro ao editar fornecedor.", "erro");
         });
     } else {
       // Adicionar novo fornecedor
@@ -145,12 +179,18 @@ export function Fornecedores() {
         .then((response) => {
           const novoFornecedor = response.data;
           const fornecedoresAtualizados = [...fornecedores, novoFornecedor];
-          setFornecedores(fornecedoresAtualizados); // Atualiza o estado local
-          setFornecedoresFiltrados(fornecedoresAtualizados); // Atualiza a lista filtrada
-          fecharModal(); // Fechar o modal após a criação
+          setFornecedores(fornecedoresAtualizados);
+          setFornecedoresFiltrados(fornecedoresAtualizados);
+          fecharModal();
+          exibirAlert(
+            "Sucesso",
+            "Fornecedor adicionado com sucesso!",
+            "sucesso"
+          );
         })
         .catch((error) => {
           console.error("Erro ao adicionar fornecedor:", error);
+          exibirAlert("Erro", "Erro ao adicionar fornecedor.", "erro");
         });
     }
   };
@@ -163,12 +203,14 @@ export function Fornecedores() {
           const fornecedoresAtualizados = fornecedores.filter(
             (f) => f.id !== fornecedorAtual.id
           );
-          setFornecedores(fornecedoresAtualizados); // Atualiza o estado local
-          setFornecedoresFiltrados(fornecedoresAtualizados); // Atualiza a lista filtrada
-          fecharModalExclusao(); // Fechar o modal após a exclusão
+          setFornecedores(fornecedoresAtualizados);
+          setFornecedoresFiltrados(fornecedoresAtualizados);
+          fecharModalExclusao();
+          exibirAlert("Sucesso", "Fornecedor excluído com sucesso!", "sucesso");
         })
         .catch((error) => {
           console.error("Erro ao excluir fornecedor:", error);
+          exibirAlert("Erro", "Erro ao excluir fornecedor.", "erro");
         });
     }
   };
@@ -212,6 +254,26 @@ export function Fornecedores() {
         titulo="Excluir Fornecedor"
         mensagem={`Tem certeza que deseja excluir o fornecedor "${fornecedorAtual?.nome}"? Esta ação não pode ser desfeita.`}
       />
+
+      {/* AlertDialog para sucesso/erro */}
+      <AlertDialog open={alertAberto} onOpenChange={setAlertAberto}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{alertTitulo}</AlertDialogTitle>
+            <AlertDialogDescription>{alertMensagem}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              style={{
+                backgroundColor:
+                  alertTipo === "sucesso" ? "#10B981" : "#EF4444",
+              }}
+            >
+              OK
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Container>
   );
 }

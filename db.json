@@ -1,13 +1,13 @@
 {
   "fornecedores": [
     {
-      "id": "77a02758-f9e2-4e99-8ad8-c8a453e962f6",
-      "nome": "teste",
-      "descricao": "",
+      "id": "3cbcb3d3-1378-4853-b088-770131115a01",
+      "nome": "Flavio Filho",
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste",
       "contatos": [
         {
-          "nome": "teste",
-          "telefone": "(11) 11111-1111"
+          "nome": "Flavio Filho",
+          "telefone": "(62) 98540-5962"
         }
       ],
       "endereco": {
@@ -16,7 +16,30 @@
         "cidade": "Inhumas",
         "logradouro": "Rua 1",
         "numero": "000",
-        "referencia": ""
+        "referencia": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste"
+      }
+    },
+    {
+      "id": "2e990d26-5b27-437d-8077-806422622748",
+      "nome": "Teste",
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste",
+      "contatos": [
+        {
+          "nome": "Teste",
+          "telefone": "(11) 11111-1111"
+        },
+        {
+          "nome": "Testedois",
+          "telefone": "(22) 22222-2222"
+        }
+      ],
+      "endereco": {
+        "cep": "75402-680",
+        "estado": "GO",
+        "cidade": "Inhumas",
+        "logradouro": "Rua 1",
+        "numero": "00",
+        "referencia": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste"
       }
     }
   ]

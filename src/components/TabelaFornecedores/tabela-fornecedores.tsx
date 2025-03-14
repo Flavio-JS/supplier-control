@@ -9,9 +9,9 @@ import {
 } from "../ui/Table/table";
 import { Fornecedor } from "../Fornecedores/fornecedor.type";
 import { Button } from "../ui/Button/button";
-import { FormattedAddress } from "../ui/FormattedAddress/formatted-address";
-import { FormatedDescription } from "../ui/FormatedDescription/formated-description";
 import styled from "styled-components";
+import { FormatedDescription } from "../FormatedDescription/formated-description";
+import { FormattedAddress } from "../FormattedAddress/formatted-address";
 
 interface TabelaFornecedoresProps {
   fornecedores: Fornecedor[];

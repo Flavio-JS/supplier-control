@@ -4,7 +4,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../Tooltip/tooltip";
+} from "../ui/Tooltip/tooltip";
 import { Info } from "lucide-react";
 
 export const FormatedDescription = ({
