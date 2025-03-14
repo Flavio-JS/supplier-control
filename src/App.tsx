@@ -6,6 +6,9 @@ const MainContainer = styled.main`
   width: 100%;
   margin: 0 auto;
   padding: 2.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 // Estilos para o título

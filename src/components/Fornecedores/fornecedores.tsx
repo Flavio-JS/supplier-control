@@ -8,6 +8,7 @@ import { TabelaFornecedores } from "../TabelaFornecedores/tabela-fornecedores";
 import { ModalFornecedor } from "../ModalFornecedor/modal-fornecedor";
 import { ModalConfirmacao } from "../ModalConfirmacao/modal-confirmacao";
 import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
+import FornecedoresPagination from "../FornecedoresPagination/fornecedores-pagination";
 
 const Container = styled.div`
   display: flex;
@@ -102,40 +103,43 @@ export function Fornecedores() {
   };
 
   return (
-    <Container>
-      <SearchContainer>
-        <SearchBar termoBusca={termoBusca} onSearchChange={setTermoBusca} />
-        <NewSupplierButton onClick={() => abrirModal()} />
-      </SearchContainer>
+    <>
+      <Container>
+        <SearchContainer>
+          <SearchBar termoBusca={termoBusca} onSearchChange={setTermoBusca} />
+          <NewSupplierButton onClick={() => abrirModal()} />
+        </SearchContainer>
 
-      <TabelaFornecedores
-        fornecedores={fornecedoresFiltrados}
-        onEditar={abrirModal}
-        onExcluir={abrirModalExclusao}
-      />
+        <TabelaFornecedores
+          fornecedores={fornecedoresFiltrados}
+          onEditar={abrirModal}
+          onExcluir={abrirModalExclusao}
+        />
 
-      <ModalFornecedor
-        aberto={modalAberto}
-        onFechar={fecharModal}
-        onSalvar={handleSalvarFornecedor}
-        fornecedor={fornecedorAtual}
-      />
+        <ModalFornecedor
+          aberto={modalAberto}
+          onFechar={fecharModal}
+          onSalvar={handleSalvarFornecedor}
+          fornecedor={fornecedorAtual}
+        />
 
-      <ModalConfirmacao
-        aberto={modalExclusaoAberto}
-        onFechar={fecharModalExclusao}
-        onConfirmar={handleExcluirFornecedor}
-        titulo="Excluir Fornecedor"
-        mensagem={`Tem certeza que deseja excluir o fornecedor "${fornecedorAtual?.nome}"? Esta ação não pode ser desfeita.`}
-      />
+        <ModalConfirmacao
+          aberto={modalExclusaoAberto}
+          onFechar={fecharModalExclusao}
+          onConfirmar={handleExcluirFornecedor}
+          titulo="Excluir Fornecedor"
+          mensagem={`Tem certeza que deseja excluir o fornecedor "${fornecedorAtual?.nome}"? Esta ação não pode ser desfeita.`}
+        />
 
-      <CustomAlertDialog
-        aberto={alertAberto}
-        onOpenChange={setAlertAberto}
-        titulo={alertTitulo}
-        mensagem={alertMensagem}
-        tipo={alertTipo}
-      />
-    </Container>
+        <CustomAlertDialog
+          aberto={alertAberto}
+          onOpenChange={setAlertAberto}
+          titulo={alertTitulo}
+          mensagem={alertMensagem}
+          tipo={alertTipo}
+        />
+      </Container>
+      <FornecedoresPagination />
+    </>
   );
 }
