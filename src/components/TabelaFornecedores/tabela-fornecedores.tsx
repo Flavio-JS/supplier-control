@@ -9,6 +9,9 @@ import {
 } from "../ui/Table/table";
 import { Fornecedor } from "../Fornecedores/fornecedor.type";
 import { Button } from "../ui/Button/button";
+import { FormattedAddress } from "../ui/FormattedAddress/formatted-address";
+import { FormatedDescription } from "../ui/FormatedDescription/formated-description";
+import styled from "styled-components";
 
 interface TabelaFornecedoresProps {
   fornecedores: Fornecedor[];
@@ -16,29 +19,42 @@ interface TabelaFornecedoresProps {
   onExcluir: (fornecedor: Fornecedor) => void;
 }
 
+const ResponsiveTable = styled.div`
+  @media (max-width: 768px) {
+    th:nth-child(2), // Descrição
+    th:nth-child(3), // Contato(s)
+    th:nth-child(4), // Endereço
+    td:nth-child(2), // Descrição
+    td:nth-child(3), // Contato(s)
+    td:nth-child(4) {
+      // Endereço
+      display: none;
+    }
+  }
+`;
+
 export function TabelaFornecedores({
   fornecedores,
   onEditar,
   onExcluir,
 }: TabelaFornecedoresProps) {
   return (
-    <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px" }}>
+    <ResponsiveTable>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>Nome</TableHead>
-            <TableHead>CNPJ</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Telefone</TableHead>
+            <TableHead>Descrição</TableHead>
+            <TableHead>Contato(s)</TableHead>
             <TableHead>Endereço</TableHead>
             <TableHead style={{ textAlign: "right" }}>Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {fornecedores.length === 0 ? (
+          {!fornecedores || fornecedores.length === 0 ? (
             <TableRow>
               <TableCell
-                colSpan={5}
+                colSpan={5} // Ajuste para o número de colunas visíveis
                 style={{
                   textAlign: "center",
                   padding: "1.5rem",
@@ -54,10 +70,35 @@ export function TabelaFornecedores({
                 <TableCell style={{ fontWeight: "500" }}>
                   {fornecedor.nome}
                 </TableCell>
-                <TableCell>{fornecedor.cnpj}</TableCell>
-                <TableCell>{fornecedor.email}</TableCell>
-                <TableCell>{fornecedor.telefone}</TableCell>
-                <TableCell>{fornecedor.endereco}</TableCell>
+                <TableCell>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <FormatedDescription value={fornecedor.descricao} />
+                  </div>
+                </TableCell>
+                <TableCell>
+                  {fornecedor.contatos.map((contato, index) => (
+                    <div key={index}>
+                      {contato.nome}: {contato.telefone}
+                    </div>
+                  ))}
+                </TableCell>
+                <TableCell>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <FormattedAddress value={fornecedor.endereco} />
+                  </div>
+                </TableCell>
                 <TableCell style={{ textAlign: "right" }}>
                   <div
                     style={{
@@ -97,6 +138,6 @@ export function TabelaFornecedores({
           )}
         </TableBody>
       </Table>
-    </div>
+    </ResponsiveTable>
   );
 }

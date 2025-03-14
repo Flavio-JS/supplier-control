@@ -1,0 +1,23 @@
+{
+  "fornecedores": [
+    {
+      "id": "77a02758-f9e2-4e99-8ad8-c8a453e962f6",
+      "nome": "teste",
+      "descricao": "",
+      "contatos": [
+        {
+          "nome": "teste",
+          "telefone": "(11) 11111-1111"
+        }
+      ],
+      "endereco": {
+        "cep": "75402-680",
+        "estado": "GO",
+        "cidade": "Inhumas",
+        "logradouro": "Rua 1",
+        "numero": "000",
+        "referencia": ""
+      }
+    }
+  ]
+}

@@ -7,6 +7,8 @@ import { ModalConfirmacao } from "../ModalConfirmacao/modal-confirmacao";
 import { Input } from "../ui/Input/input";
 import { Button } from "../ui/Button/button";
 import styled from "styled-components";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 // Estilos para o container principal
 const Container = styled.div`
@@ -72,36 +74,17 @@ export function Fornecedores() {
     null
   );
 
-  // Carregar dados iniciais (simulando uma API)
+  // Carregar dados iniciais da API do json-server
   useEffect(() => {
-    const dadosIniciais: Fornecedor[] = [
-      {
-        id: 1,
-        nome: "Distribuidora ABC",
-        email: "contato@abc.com",
-        telefone: "(11) 99999-1111",
-        endereco: "Av. Paulista, 1000",
-        cnpj: "12.345.678/0001-90",
-      },
-      {
-        id: 2,
-        nome: "Suprimentos XYZ",
-        email: "vendas@xyz.com",
-        telefone: "(11) 99999-2222",
-        endereco: "Rua Augusta, 500",
-        cnpj: "98.765.432/0001-10",
-      },
-      {
-        id: 3,
-        nome: "Materiais Rápidos",
-        email: "contato@rapidos.com",
-        telefone: "(11) 99999-3333",
-        endereco: "Av. Rebouças, 200",
-        cnpj: "45.678.901/0001-23",
-      },
-    ];
-    setFornecedores(dadosIniciais);
-    setFornecedoresFiltrados(dadosIniciais);
+    axios
+      .get("http://localhost:3001/fornecedores")
+      .then((response) => {
+        setFornecedores(response.data);
+        setFornecedoresFiltrados(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar fornecedores:", error);
+      });
   }, []);
 
   // Filtrar fornecedores com base no termo de busca
@@ -121,14 +104,14 @@ export function Fornecedores() {
     setModalAberto(true);
   };
 
-  const fecharModal = () => {
-    setModalAberto(false);
-    setFornecedorAtual(null);
-  };
-
   const abrirModalExclusao = (fornecedor: Fornecedor) => {
     setFornecedorAtual(fornecedor);
     setModalExclusaoAberto(true);
+  };
+
+  const fecharModal = () => {
+    setModalAberto(false);
+    setFornecedorAtual(null);
   };
 
   const fecharModalExclusao = () => {
@@ -139,24 +122,54 @@ export function Fornecedores() {
   const salvarFornecedor = (fornecedor: Fornecedor) => {
     if (fornecedor.id) {
       // Editar fornecedor existente
-      setFornecedores(
-        fornecedores.map((f) => (f.id === fornecedor.id ? fornecedor : f))
-      );
+      axios
+        .put(`http://localhost:3001/fornecedores/${fornecedor.id}`, fornecedor)
+        .then(() => {
+          const fornecedoresAtualizados = fornecedores.map((f) =>
+            f.id === fornecedor.id ? fornecedor : f
+          );
+          setFornecedores(fornecedoresAtualizados);
+          setFornecedoresFiltrados(fornecedoresAtualizados);
+          fecharModal(); // Fechar o modal após a edição
+        })
+        .catch((error) => {
+          console.error("Erro ao editar fornecedor:", error);
+        });
     } else {
       // Adicionar novo fornecedor
-      const novoFornecedor = {
-        ...fornecedor,
-        id: Math.max(0, ...fornecedores.map((f) => f.id)) + 1,
-      };
-      setFornecedores([...fornecedores, novoFornecedor]);
+      axios
+        .post("http://localhost:3001/fornecedores", {
+          ...fornecedor,
+          id: uuidv4(),
+        })
+        .then((response) => {
+          const novoFornecedor = response.data;
+          const fornecedoresAtualizados = [...fornecedores, novoFornecedor];
+          setFornecedores(fornecedoresAtualizados); // Atualiza o estado local
+          setFornecedoresFiltrados(fornecedoresAtualizados); // Atualiza a lista filtrada
+          fecharModal(); // Fechar o modal após a criação
+        })
+        .catch((error) => {
+          console.error("Erro ao adicionar fornecedor:", error);
+        });
     }
-    fecharModal();
   };
 
   const excluirFornecedor = () => {
     if (fornecedorAtual) {
-      setFornecedores(fornecedores.filter((f) => f.id !== fornecedorAtual.id));
-      fecharModalExclusao();
+      axios
+        .delete(`http://localhost:3001/fornecedores/${fornecedorAtual.id}`)
+        .then(() => {
+          const fornecedoresAtualizados = fornecedores.filter(
+            (f) => f.id !== fornecedorAtual.id
+          );
+          setFornecedores(fornecedoresAtualizados); // Atualiza o estado local
+          setFornecedoresFiltrados(fornecedoresAtualizados); // Atualiza a lista filtrada
+          fecharModalExclusao(); // Fechar o modal após a exclusão
+        })
+        .catch((error) => {
+          console.error("Erro ao excluir fornecedor:", error);
+        });
     }
   };
 
