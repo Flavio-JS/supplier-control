@@ -9,6 +9,7 @@ import {
   FormControl,
   FormMessage,
 } from "../ui/Form/form";
+import { formatTelefone } from "../../utils/formatTelefone";
 
 const ContatoWrapper = styled.div`
   display: flex;
@@ -63,14 +64,22 @@ export function ContatoForm() {
               <FormItem>
                 <FormLabel>Telefone do Contato*</FormLabel>
                 <FormControl>
-                  <Input placeholder="(00) 00000-0000" {...field} />
+                  <Input
+                    placeholder="(00) 00000-0000"
+                    {...field}
+                    value={field.value}
+                    onChange={(e) => {
+                      const formattedTelefone = formatTelefone(e.target.value);
+                      field.onChange(formattedTelefone);
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <ButtonWrapper>
-            <Button type="button" style={{ marginBottom: "20px" }} onClick={() => remove(index)}>
+            <Button type="button" onClick={() => remove(index)}>
               Remover
             </Button>
           </ButtonWrapper>

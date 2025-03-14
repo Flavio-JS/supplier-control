@@ -1,25 +1,6 @@
 {
   "fornecedores": [
     {
-      "id": "3cbcb3d3-1378-4853-b088-770131115a01",
-      "nome": "Flavio Filho",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste",
-      "contatos": [
-        {
-          "nome": "Flavio Filho",
-          "telefone": "(62) 98540-5962"
-        }
-      ],
-      "endereco": {
-        "cep": "75402-680",
-        "estado": "GO",
-        "cidade": "Inhumas",
-        "logradouro": "Rua 1",
-        "numero": "000",
-        "referencia": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste"
-      }
-    },
-    {
       "id": "2e990d26-5b27-437d-8077-806422622748",
       "nome": "Teste",
       "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste",
@@ -40,6 +21,25 @@
         "logradouro": "Rua 1",
         "numero": "00",
         "referencia": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste"
+      }
+    },
+    {
+      "id": "b386c9ec-de6f-4bd1-8982-c6d823126a80",
+      "nome": "tes",
+      "descricao": "testefgf",
+      "contatos": [
+        {
+          "nome": "sdfsdfsdf",
+          "telefone": "(22) 22222-2222"
+        }
+      ],
+      "endereco": {
+        "cep": "44444-444",
+        "estado": "BA",
+        "cidade": "Santo Antonio de Jesus",
+        "logradouro": "Rua Via Coletora B",
+        "numero": "123",
+        "referencia": "Predio ABC"
       }
     }
   ]
