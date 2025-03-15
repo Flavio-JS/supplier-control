@@ -32,19 +32,20 @@ const PaginationLink = styled.a<{ isActive?: boolean; disabled?: boolean }>`
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: color 0.2s;
   color: ${({ theme }) => theme.colors.textPrimary};
+  background-color: transparent;
+  border: 1px solid transparent;
 
   ${({ isActive, theme }) =>
     isActive
       ? `
-    border: 1px solid ${theme.colors.textSecondary};
-    background-color: ${theme.colors.surface};
+    color: ${theme.colors.primary};
   `
       : `
-    background-color: transparent;
     &:hover {
       background-color: ${theme.colors.surface};
+      color: ${theme.colors.primary};
     }
   `}
 

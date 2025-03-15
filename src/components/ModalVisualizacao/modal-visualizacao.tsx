@@ -3,11 +3,10 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
+  DialogCloseButton,
 } from "../ui/Dialog/dialog";
-import { Button } from "../ui/Button/button";
 import { Fornecedor } from "../Fornecedores/fornecedor.type";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 import styled from "styled-components";
 
 const IconWrapper = styled.a`
@@ -59,6 +58,9 @@ export function ModalVisualizacao({
   return (
     <Dialog open={aberto} onOpenChange={onFechar}>
       <DialogContent>
+        <DialogCloseButton>
+          <X size={20} />
+        </DialogCloseButton>
         <DialogHeader>
           <DialogTitle>Detalhes do Fornecedor</DialogTitle>
         </DialogHeader>
@@ -114,9 +116,6 @@ export function ModalVisualizacao({
             </p>
           </ModalContent>
         )}
-        <DialogFooter>
-          <Button onClick={onFechar}>Fechar</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

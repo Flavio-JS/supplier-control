@@ -8,11 +8,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogCloseButton,
 } from "../ui/Dialog/dialog";
 import { Button } from "../ui/Button/button";
 import { Fornecedor } from "../Fornecedores/fornecedor.type";
 import { FornecedorForm } from "../FornecedorForm/fornecedor-form";
 import styled from "styled-components";
+import { X } from "lucide-react";
 
 const formSchema = yup.object({
   id: yup.string().optional(),
@@ -136,6 +138,9 @@ export function ModalFornecedor({
   return (
     <Dialog open={aberto} onOpenChange={onFechar}>
       <DialogContent>
+        <DialogCloseButton>
+          <X size={20} />
+        </DialogCloseButton>
         <DialogHeader>
           <DialogTitle>
             {fornecedor ? "Editar Fornecedor" : "Novo Fornecedor"}

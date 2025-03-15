@@ -158,12 +158,6 @@ export function Fornecedores() {
           <NewSupplierButton onClick={() => abrirModal()} />
         </SearchContainer>
 
-        <FornecedoresPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={goToPage}
-        />
-
         <TabelaFornecedores
           fornecedores={fornecedoresPaginados}
           onEditar={abrirModal}
@@ -176,6 +170,12 @@ export function Fornecedores() {
           onFechar={fecharModal}
           onSalvar={handleSalvarFornecedor}
           fornecedor={fornecedorAtual}
+        />
+
+        <FornecedoresPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={goToPage}
         />
 
         <ModalVisualizacao

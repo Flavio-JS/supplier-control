@@ -78,17 +78,28 @@ const DialogCloseButton = styled(DialogPrimitive.Close)`
   top: 1rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  background-color: transparent;
+  border: 1px solid transparent;
   color: ${({ theme }) => theme.colors.textPrimary};
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
-    opacity: 1;
+    background-color: ${({ theme }) => theme.colors.surface};
+    color: ${({ theme }) => theme.colors.primary};
   }
 
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary};
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -96,11 +107,7 @@ const DialogHeader = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  text-align: center;
-
-  @media (min-width: 640px) {
-    text-align: left;
-  }
+  text-align: left;
 `;
 
 const DialogFooter = styled.div`
@@ -125,7 +132,7 @@ const DialogTitle = styled(DialogPrimitive.Title)`
 
 const DialogDescription = styled(DialogPrimitive.Description)`
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.colors.textSecondary}; 
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 const Dialog = DialogPrimitive.Root;

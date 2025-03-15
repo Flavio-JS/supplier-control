@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Select = styled.select`
   padding: 8px;
   border-radius: 4px;
+  width: max-content;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.textPrimary};
