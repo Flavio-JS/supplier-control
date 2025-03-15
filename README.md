@@ -90,7 +90,7 @@ Siga os passos abaixo para rodar o projeto localmente:
    yarn dev
    ```
 
-   A aplicação estará disponível em http://localhost:3000.
+   A aplicação estará disponível em http://localhost:5173.
 
 6. Build e Preview (opcional):
 
