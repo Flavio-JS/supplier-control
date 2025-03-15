@@ -1,3 +1,7 @@
+![image](https://github.com/user-attachments/assets/604d6ed3-a623-434c-a1e0-1fa99112dcd2)
+![image](https://github.com/user-attachments/assets/af043fb3-9dc9-4b12-b495-cebf19547fa3)
+![image](https://github.com/user-attachments/assets/ab1de52d-129b-4292-91e7-58367023f68f)
+
 # Supplier Control
 
 O Supplier Control é uma aplicação CRUD (Create, Read, Update, Delete) desenvolvida para gerenciar fornecedores. A aplicação permite cadastrar, visualizar, editar e excluir fornecedores, além de oferecer uma funcionalidade de busca por nome. Ao criar ou editar um fornecedor, o sistema utiliza o CEP para preencher automaticamente as informações de endereço, utilizando a API ViaCEP.
@@ -6,6 +10,7 @@ O Supplier Control é uma aplicação CRUD (Create, Read, Update, Delete) desenv
 
 - **Cadastro de Fornecedores:** Cadastre novos fornecedores com informações como nome, CEP, endereço, etc.
 - **Listagem de Fornecedores:** Visualize todos os fornecedores cadastrados em uma tabela.
+- **Integração com WhatsApp:** Entre em contato via WhatsApp com 1 clique.
 - **Edição de Fornecedores:** Edite as informações de um fornecedor existente.
 - **Exclusão de Fornecedores:** Remova fornecedores da lista.
 - **Busca por Nome:** Filtre a lista de fornecedores pelo nome.
