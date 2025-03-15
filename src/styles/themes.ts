@@ -1,3 +1,5 @@
+// Tema principal VExpenses
+
 export const lightTheme = {
   colors: {
     // Cores principais
@@ -43,5 +45,55 @@ export const darkTheme = {
     error: "#c82333", // Vermelho (erro)
     warning: "#e0a800", // Amarelo (aviso)
     info: "#138496", // Azul info (informações)
+  },
+};
+
+// Tema(s) extra(s)
+
+export const lightTheme2 = {
+  colors: {
+    // Cores principais
+    primary: "#069c3d",
+    secondary: "#45c469",
+    accent: "#34ba67",
+
+    // Cores de fundo
+    background: "#e2d6dc",
+    surface: "#d9c8d1",
+
+    // Cores de texto
+    textPrimary: "#00481d",
+    textSecondary: "#653d4c",
+    textOnPrimary: "#e0e0e0",
+
+    // Cores de estado (sucesso, erro, aviso, info)
+    success: "#28a745",
+    error: "#dc3545",
+    warning: "#ffc107",
+    info: "#17a2b8",
+  },
+};
+
+export const darkTheme2 = {
+  colors: {
+    // Cores principais
+    primary: "#62F999",
+    secondary: "#3BBA5F",
+    accent: "#44CA77",
+
+    // Cores de fundo
+    background: "#2A1E24",
+    surface: "#36262E",
+
+    // Cores de texto
+    textPrimary: "#B8FFD4",
+    textSecondary: "#C299A8",
+    textOnPrimary: "#1F1F1F",
+
+    // Cores de estado (sucesso, erro, aviso, info)
+    success: "#28a745",
+    error: "#dc3545",
+    warning: "#ffc107",
+    info: "#17a2b8",
   },
 };
