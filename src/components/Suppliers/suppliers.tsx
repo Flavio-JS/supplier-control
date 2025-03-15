@@ -11,6 +11,7 @@ import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
 import { SuppliersPagination } from "../SuppliersPagination/suppliers-pagination";
 import { ModalView } from "../ModalView/modal-view";
 import { Button } from "../ui/Button/button";
+import { ExternalLink } from "lucide-react";
 
 const Container = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ export function Suppliers() {
     totalPages,
     goToPage,
     exportToCSV,
+    exportToExcel,
   } = useSuppliers();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -157,7 +159,12 @@ export function Suppliers() {
         <SearchContainer>
           <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} />
           <NewSupplierButton onClick={() => openModal()} />
-          <Button onClick={exportToCSV}>Exportar CSV</Button>
+          <Button style={{ gap: "0.5rem" }} onClick={exportToCSV}>
+            <ExternalLink /> CSV
+          </Button>
+          <Button style={{ gap: "0.5rem" }} onClick={exportToExcel}>
+            <ExternalLink /> Excel
+          </Button>
         </SearchContainer>
 
         <SuppliersTable

@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { Supplier } from "../components/Suppliers/supplier.type";
+import * as XLSX from "xlsx";
 
 export function useSuppliers() {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
@@ -135,6 +136,55 @@ export function useSuppliers() {
     document.body.removeChild(link);
   };
 
+  const exportToExcel = () => {
+    const headers = [
+      "ID",
+      "Nome",
+      "Descrição",
+      "CEP",
+      "Estado",
+      "Cidade",
+      "Rua",
+      "Número",
+      "Referência",
+      "Contatos (Nome)",
+      "Contatos (Telefone)",
+    ];
+
+    const data = suppliers.map((supplier) => {
+      const contactNames = supplier.contacts
+        .map((contact) => contact.name)
+        .join("; ");
+      const contactPhones = supplier.contacts
+        .map((contact) => contact.telephone)
+        .join("; ");
+
+      return [
+        supplier.id,
+        supplier.name,
+        supplier.description || "",
+        supplier.address.zipCode,
+        supplier.address.state,
+        supplier.address.city,
+        supplier.address.street,
+        supplier.address.number,
+        supplier.address.reference || "",
+        contactNames,
+        contactPhones,
+      ];
+    });
+
+    const worksheet = XLSX.utils.aoa_to_sheet([headers, ...data]);
+
+    const columnWidths = headers.map((header) => ({ wch: header.length + 5 }));
+    worksheet["!cols"] = columnWidths;
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Fornecedores");
+
+    XLSX.writeFile(workbook, "fornecedores.xlsx");
+  };
+
   return {
     suppliers: pagedSuppliers,
     searchTerm,
@@ -145,5 +195,6 @@ export function useSuppliers() {
     totalPages,
     goToPage,
     exportToCSV,
+    exportToExcel,
   };
 }

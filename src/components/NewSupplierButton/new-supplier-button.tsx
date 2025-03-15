@@ -25,7 +25,7 @@ interface NewSupplierButtonProps {
 export function NewSupplierButton({ onClick }: NewSupplierButtonProps) {
   return (
     <NewButton onClick={onClick}>
-      <Plus /> Novo Fornecedor
+      <Plus /> Fornecedor
     </NewButton>
   );
 }
