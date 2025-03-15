@@ -6,6 +6,7 @@ O Supplier Control é uma aplicação CRUD (Create, Read, Update, Delete) desenv
 
 - **Cadastro de Fornecedores:** Cadastre novos fornecedores com informações como nome, CEP, endereço, etc.
 - **Listagem de Fornecedores:** Visualize todos os fornecedores cadastrados em uma tabela.
+- **Integração com WhatsApp:** Entre em contato via WhatsApp com 1 clique.
 - **Edição de Fornecedores:** Edite as informações de um fornecedor existente.
 - **Exclusão de Fornecedores:** Remova fornecedores da lista.
 - **Busca por Nome:** Filtre a lista de fornecedores pelo nome.
