@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { Fornecedores } from "./components/Fornecedores/fornecedores";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./styles/themes";
+import { useTheme } from "./context/theme-context";
+import { ThemeToggleButton } from "./components/ThemeToggleButton/theme-toggle-button";
 
 // Estilos para o container principal
 const MainContainer = styled.main`
@@ -9,21 +13,27 @@ const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 // Estilos para o título
 const Title = styled.h1`
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
 `;
 
 function App() {
+  const { theme } = useTheme(); // useTheme personalizado
+
   return (
-    <MainContainer>
-      <Title>Gerenciamento de Fornecedores</Title>
-      <Fornecedores />
-    </MainContainer>
+    <StyledThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <MainContainer>
+        <Title>Gerenciamento de Fornecedores</Title>
+        <ThemeToggleButton />
+        <Fornecedores />
+      </MainContainer>
+    </StyledThemeProvider>
   );
 }
 
