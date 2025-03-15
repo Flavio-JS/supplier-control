@@ -12,6 +12,7 @@ import { SuppliersPagination } from "../SuppliersPagination/suppliers-pagination
 import { ModalView } from "../ModalView/modal-view";
 import { Button } from "../ui/Button/button";
 import { ExternalLink } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/Popover/popover";
 
 const Container = styled.div`
   display: flex;
@@ -158,13 +159,36 @@ export function Suppliers() {
       <Container>
         <SearchContainer>
           <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} />
-          <NewSupplierButton onClick={() => openModal()} />
-          <Button style={{ gap: "0.5rem" }} onClick={exportToCSV}>
-            <ExternalLink /> CSV
-          </Button>
-          <Button style={{ gap: "0.5rem" }} onClick={exportToExcel}>
-            <ExternalLink /> Excel
-          </Button>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <NewSupplierButton onClick={() => openModal()} />
+            <Popover>
+              <PopoverTrigger variant="ghost" size="medium">
+                <ExternalLink />
+              </PopoverTrigger>
+              <PopoverContent
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.5rem",
+                }}
+              >
+                <Button
+                  variant="ghost"
+                  style={{ gap: "0.5rem" }}
+                  onClick={exportToCSV}
+                >
+                  <ExternalLink /> CSV
+                </Button>
+                <Button
+                  variant="ghost"
+                  style={{ gap: "0.5rem" }}
+                  onClick={exportToExcel}
+                >
+                  <ExternalLink /> Excel
+                </Button>
+              </PopoverContent>
+            </Popover>
+          </div>
         </SearchContainer>
 
         <SuppliersTable
