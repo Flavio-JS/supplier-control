@@ -7,17 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/Table/table";
-import { Fornecedor } from "../Fornecedores/fornecedor.type";
+import { Supplier } from "../Suppliers/supplier.type";
 import { Button } from "../ui/Button/button";
 import styled from "styled-components";
 import { FormatedDescription } from "../FormatedDescription/formated-description";
 import { FormattedAddress } from "../FormattedAddress/formatted-address";
 
-interface TabelaFornecedoresProps {
-  fornecedores: Fornecedor[];
-  onEditar: (fornecedor: Fornecedor) => void;
-  onExcluir: (fornecedor: Fornecedor) => void;
-  onVisualizar: (fornecedor: Fornecedor) => void;
+interface SuppliersTableProps {
+  suppliers: Supplier[];
+  onEdit: (supplier: Supplier) => void;
+  onDelete: (supplier: Supplier) => void;
+  onView: (supplier: Supplier) => void;
 }
 
 const ResponsiveTable = styled.div`
@@ -62,21 +62,19 @@ const ActionsCell = styled(TableCell)`
 const EmptyCell = styled(TableCell)`
   text-align: center;
   padding: 1.5rem;
-  color: ${({ theme }) =>
-    theme.colors
-      .textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 const NameCell = styled(TableCell)`
   font-weight: 500;
 `;
 
-export function TabelaFornecedores({
-  fornecedores,
-  onEditar,
-  onExcluir,
-  onVisualizar,
-}: TabelaFornecedoresProps) {
+export function SuppliersTable({
+  suppliers,
+  onEdit,
+  onDelete,
+  onView,
+}: SuppliersTableProps) {
   return (
     <ResponsiveTable>
       <Table>
@@ -90,20 +88,20 @@ export function TabelaFornecedores({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {!fornecedores || fornecedores.length === 0 ? (
+          {!suppliers || suppliers.length === 0 ? (
             <TableRow>
               <EmptyCell colSpan={5}>Nenhum fornecedor encontrado</EmptyCell>
             </TableRow>
           ) : (
-            fornecedores.map((fornecedor) => (
-              <TableRow key={fornecedor.id}>
-                <NameCell>{fornecedor.nome}</NameCell>
+            suppliers.map((supplier) => (
+              <TableRow key={supplier.id}>
+                <NameCell>{supplier.name}</NameCell>
                 <TableCell>
-                  <FormatedDescription value={fornecedor.descricao} />
+                  <FormatedDescription value={supplier.description} />
                 </TableCell>
                 <TableCell>
-                  {fornecedor.contatos.map((contato, index) => {
-                    const telefoneFormatado = contato.telefone.replace(
+                  {supplier.contacts.map((contact, index) => {
+                    const telefoneFormatado = contact.telephone.replace(
                       /\D/g,
                       ""
                     );
@@ -120,7 +118,7 @@ export function TabelaFornecedores({
                         }}
                       >
                         <span>
-                          {contato.nome}: {contato.telefone}
+                          {contact.name}: {contact.telephone}
                         </span>
                         <IconWrapper
                           href={whatsappLink}
@@ -135,7 +133,7 @@ export function TabelaFornecedores({
                   })}
                 </TableCell>
                 <TableCell>
-                  <FormattedAddress value={fornecedor.endereco} />
+                  <FormattedAddress value={supplier.address} />
                 </TableCell>
                 <ActionsCell>
                   <div
@@ -148,7 +146,7 @@ export function TabelaFornecedores({
                     <MobileOnlyButton
                       variant="ghost"
                       size="small"
-                      onClick={() => onVisualizar(fornecedor)}
+                      onClick={() => onView(supplier)}
                     >
                       <Eye size={16} />
                     </MobileOnlyButton>
@@ -156,7 +154,7 @@ export function TabelaFornecedores({
                     <Button
                       variant="ghost"
                       size="small"
-                      onClick={() => onEditar(fornecedor)}
+                      onClick={() => onEdit(supplier)}
                     >
                       <Edit size={16} />
                     </Button>
@@ -164,7 +162,7 @@ export function TabelaFornecedores({
                     <Button
                       variant="ghost"
                       size="small"
-                      onClick={() => onExcluir(fornecedor)}
+                      onClick={() => onDelete(supplier)}
                     >
                       <Trash2 size={16} />
                     </Button>

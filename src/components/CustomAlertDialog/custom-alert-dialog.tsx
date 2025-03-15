@@ -10,12 +10,10 @@ import {
 import styled from "styled-components";
 
 const CustomAlertDialogAction = styled(AlertDialogAction)<{
-  tipo: "sucesso" | "erro";
+  tipo: "success" | "error";
 }>`
   background-color: ${({ theme, tipo }) =>
-    tipo === "sucesso"
-      ? theme.colors.success
-      : theme.colors.error};
+    tipo === "success" ? theme.colors.success : theme.colors.error};
   color: ${({ theme }) => theme.colors.textOnPrimary};
   border: none;
   padding: 0.5rem 1rem;
@@ -26,9 +24,7 @@ const CustomAlertDialogAction = styled(AlertDialogAction)<{
 
   &:hover {
     background-color: ${({ theme, tipo }) =>
-      tipo === "sucesso"
-        ? theme.colors.success
-        : theme.colors.error};
+      tipo === "success" ? theme.colors.success : theme.colors.error};
     opacity: 0.9;
   }
 
@@ -39,29 +35,29 @@ const CustomAlertDialogAction = styled(AlertDialogAction)<{
 `;
 
 interface CustomAlertDialogProps {
-  aberto: boolean;
+  open: boolean;
   onOpenChange: (open: boolean) => void;
-  titulo: string;
-  mensagem: string;
-  tipo: "sucesso" | "erro";
+  title: string;
+  message: string;
+  type: "success" | "error";
 }
 
 export function CustomAlertDialog({
-  aberto,
+  open,
   onOpenChange,
-  titulo,
-  mensagem,
-  tipo,
+  title,
+  message,
+  type,
 }: CustomAlertDialogProps) {
   return (
-    <AlertDialog open={aberto} onOpenChange={onOpenChange}>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{titulo}</AlertDialogTitle>
-          <AlertDialogDescription>{mensagem}</AlertDialogDescription>
+          <AlertDialogTitle>{title}</AlertDialogTitle>
+          <AlertDialogDescription>{message}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <CustomAlertDialogAction tipo={tipo}>OK</CustomAlertDialogAction>
+          <CustomAlertDialogAction tipo={type}>OK</CustomAlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

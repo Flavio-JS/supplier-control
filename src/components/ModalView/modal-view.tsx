@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogCloseButton,
 } from "../ui/Dialog/dialog";
-import { Fornecedor } from "../Fornecedores/fornecedor.type";
+import { Supplier } from "../Suppliers/supplier.type";
 import { MessageCircle, X } from "lucide-react";
 import styled from "styled-components";
 
@@ -26,13 +26,13 @@ const ModalContent = styled.div`
   color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-const ContatoList = styled.ul`
+const ContactList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
 `;
 
-const ContatoItem = styled.div`
+const ContactItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -40,23 +40,19 @@ const ContatoItem = styled.div`
   gap: 8px;
 `;
 
-const EnderecoContainer = styled.div`
+const AddressContainer = styled.div`
   margin-left: 8px;
 `;
 
-interface ModalVisualizacaoProps {
-  aberto: boolean;
-  onFechar: () => void;
-  fornecedor: Fornecedor | null;
+interface ModalViewProps {
+  open: boolean;
+  onClose: () => void;
+  supplier: Supplier | null;
 }
 
-export function ModalVisualizacao({
-  aberto,
-  onFechar,
-  fornecedor,
-}: ModalVisualizacaoProps) {
+export function ModalView({ open, onClose, supplier }: ModalViewProps) {
   return (
-    <Dialog open={aberto} onOpenChange={onFechar}>
+    <Dialog open={open} onOpenChange={onClose}>
       <DialogContent>
         <DialogCloseButton>
           <X size={20} />
@@ -64,25 +60,25 @@ export function ModalVisualizacao({
         <DialogHeader>
           <DialogTitle>Detalhes do Fornecedor</DialogTitle>
         </DialogHeader>
-        {fornecedor && (
+        {supplier && (
           <ModalContent>
             <p>
-              <strong>Nome:</strong> {fornecedor.nome}
+              <strong>Nome:</strong> {supplier.name}
             </p>
             <p>
-              <strong>Descrição:</strong> {fornecedor.descricao}
+              <strong>Descrição:</strong> {supplier.description}
             </p>
             <p>
               <strong>Contatos:</strong>
-              <ContatoList>
-                {fornecedor.contatos.map((contato, index) => {
-                  const telefoneFormatado = contato.telefone.replace(/\D/g, "");
-                  const whatsappLink = `https://wa.me/${telefoneFormatado}`;
+              <ContactList>
+                {supplier.contacts.map((contact, index) => {
+                  const formattedPhone = contact.telephone.replace(/\D/g, "");
+                  const whatsappLink = `https://wa.me/${formattedPhone}`;
 
                   return (
-                    <ContatoItem key={index}>
+                    <ContactItem key={index}>
                       <span>
-                        {contato.nome}: {contato.telefone}
+                        {contact.name}: {contact.telephone}
                       </span>
                       <IconWrapper
                         href={whatsappLink}
@@ -92,27 +88,26 @@ export function ModalVisualizacao({
                       >
                         <MessageCircle fill="currentColor" size={20} />
                       </IconWrapper>
-                    </ContatoItem>
+                    </ContactItem>
                   );
                 })}
-              </ContatoList>
+              </ContactList>
             </p>
             <p>
               <strong>Endereço:</strong>
-              <EnderecoContainer>
-                <strong>CEP:</strong> {fornecedor.endereco.cep}
+              <AddressContainer>
+                <strong>CEP:</strong> {supplier.address.zipCode}
                 <br />
-                <strong>Logradouro:</strong> {fornecedor.endereco.logradouro}
+                <strong>Logradouro:</strong> {supplier.address.street}
                 <br />
-                <strong>Número:</strong> {fornecedor.endereco.numero}
+                <strong>Número:</strong> {supplier.address.number}
                 <br />
-                <strong>Cidade:</strong> {fornecedor.endereco.cidade}
+                <strong>Cidade:</strong> {supplier.address.city}
                 <br />
-                <strong>Estado:</strong> {fornecedor.endereco.estado}
+                <strong>Estado:</strong> {supplier.address.state}
                 <br />
-                <strong>Referência:</strong>{" "}
-                {fornecedor.endereco.referencia || "-"}
-              </EnderecoContainer>
+                <strong>Referência:</strong> {supplier.address.reference || "-"}
+              </AddressContainer>
             </p>
           </ModalContent>
         )}

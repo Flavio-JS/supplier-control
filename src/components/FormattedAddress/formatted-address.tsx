@@ -6,9 +6,9 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "../ui/Tooltip/tooltip";
-import { Endereco } from "../Fornecedores/fornecedor.type";
+import { Address } from "../Suppliers/supplier.type";
 
-export const FormattedAddress = ({ value }: { value: Endereco }) => {
+export const FormattedAddress = ({ value }: { value: Address }) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -23,15 +23,15 @@ export const FormattedAddress = ({ value }: { value: Endereco }) => {
     };
   }, []);
 
-  let endereco = `${value.logradouro}, ${value.numero} - ${value.referencia} - ${value.cidade} - ${value.estado} - ${value.cep}`;
+  let address = `${value.street}, ${value.number} - ${value.reference} - ${value.city} - ${value.state} - ${value.zipCode}`;
 
-  if (endereco.length > 20 && screenWidth < 1024) {
-    endereco = endereco.slice(0, 20).concat("...");
+  if (address.length > 20 && screenWidth < 1024) {
+    address = address.slice(0, 20).concat("...");
   }
 
   return (
     <>
-      {endereco}
+      {address}
       {screenWidth < 1024 && (
         <TooltipProvider>
           <Tooltip>
@@ -42,17 +42,17 @@ export const FormattedAddress = ({ value }: { value: Endereco }) => {
             </TooltipTrigger>
             <TooltipContent>
               <div>
-                <strong>CEP:</strong> {value.cep}
+                <strong>CEP:</strong> {value.zipCode}
                 <br />
-                <strong>Logradouro:</strong> {value.logradouro}
+                <strong>Logradouro:</strong> {value.street}
                 <br />
-                <strong>Número:</strong> {value.numero}
+                <strong>Número:</strong> {value.number}
                 <br />
-                <strong>Cidade:</strong> {value.cidade}
+                <strong>Cidade:</strong> {value.city}
                 <br />
-                <strong>Estado:</strong> {value.estado}
+                <strong>Estado:</strong> {value.state}
                 <br />
-                <strong>Referência:</strong> {value.referencia || "-"}
+                <strong>Referência:</strong> {value.reference || "-"}
               </div>
             </TooltipContent>
           </Tooltip>

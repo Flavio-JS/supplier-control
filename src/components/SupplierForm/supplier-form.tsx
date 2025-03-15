@@ -7,8 +7,8 @@ import {
   FormControl,
   FormMessage,
 } from "../ui/Form/form";
-import { ContatoForm } from "../ContatoForm/contato-form";
-import { EnderecoForm } from "../EnderecoForm/endereco-form";
+import { ContactForm } from "../ContactForm/contact-form";
+import { AddressForm } from "../AddressForm/address-form";
 import styled from "styled-components";
 
 const FormContainer = styled.div`
@@ -17,14 +17,14 @@ const FormContainer = styled.div`
   gap: 1rem;
 `;
 
-export function FornecedorForm() {
+export function SupplierForm() {
   const { control } = useFormContext();
 
   return (
     <FormContainer>
       <FormField
         control={control}
-        name="nome"
+        name="name"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Nome*</FormLabel>
@@ -37,7 +37,7 @@ export function FornecedorForm() {
       />
       <FormField
         control={control}
-        name="descricao"
+        name="description"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Descrição</FormLabel>
@@ -48,8 +48,8 @@ export function FornecedorForm() {
           </FormItem>
         )}
       />
-      <ContatoForm />
-      <EnderecoForm />
+      <ContactForm />
+      <AddressForm />
     </FormContainer>
   );
 }

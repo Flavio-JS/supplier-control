@@ -33,18 +33,18 @@ const StyledInput = styled(Input)`
 `;
 
 interface SearchBarProps {
-  termoBusca: string;
+  searchTerm: string;
   onSearchChange: (value: string) => void;
 }
 
-export function SearchBar({ termoBusca, onSearchChange }: SearchBarProps) {
+export function SearchBar({ searchTerm, onSearchChange }: SearchBarProps) {
   return (
     <SearchInputContainer>
       <SearchIcon />
       <StyledInput
         type="text"
         placeholder="Buscar por nome..."
-        value={termoBusca}
+        value={searchTerm}
         onChange={(e) => onSearchChange(e.target.value)}
       />
     </SearchInputContainer>

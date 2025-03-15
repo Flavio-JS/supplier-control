@@ -8,17 +8,17 @@ import {
   PaginationEllipsis,
 } from "../ui/Pagination/pagination";
 
-interface FornecedoresPaginationProps {
+interface SuppliersPaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
-export function FornecedoresPagination({
+export function SuppliersPagination({
   currentPage,
   totalPages,
   onPageChange,
-}: FornecedoresPaginationProps) {
+}: SuppliersPaginationProps) {
   const maxVisiblePages = 5;
 
   if (totalPages === 0) return null;

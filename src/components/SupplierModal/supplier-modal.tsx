@@ -11,70 +11,70 @@ import {
   DialogCloseButton,
 } from "../ui/Dialog/dialog";
 import { Button } from "../ui/Button/button";
-import { Fornecedor } from "../Fornecedores/fornecedor.type";
-import { FornecedorForm } from "../FornecedorForm/fornecedor-form";
 import styled from "styled-components";
 import { X } from "lucide-react";
+import { Supplier } from "../Suppliers/supplier.type";
+import { SupplierForm } from "../SupplierForm/supplier-form";
 
 const formSchema = yup.object({
   id: yup.string().optional(),
-  nome: yup
+  name: yup
     .string()
     .min(2, "Nome deve ter pelo menos 2 caracteres")
     .matches(/^[a-zA-Z0-9 ]*$/, "Nome deve ser alfanumérica")
     .required("Nome é obrigatório")
     .max(75, "Nome deve ter no máximo 75 caracteres"),
-  descricao: yup
+  description: yup
     .string()
     .matches(/^[a-zA-Z0-9 ]*$/, "Descrição deve ser alfanumérica")
     .max(100, "Descrição deve ter no máximo 100 caracteres"),
-  contatos: yup
+  contacts: yup
     .array()
     .of(
       yup.object().shape({
-        nome: yup
+        name: yup
           .string()
           .required("Nome é obrigatório")
           .matches(/^[a-zA-Z ]*$/, "Nome deve ser alfabético"),
-        telefone: yup
+        telephone: yup
           .string()
           .required("Telefone é obrigatório")
           .matches(/^\(\d{2}\) \d{5}-\d{4}$/, "Formato inválido"),
       })
     )
     .min(1, "Pelo menos um contato é obrigatório"),
-  endereco: yup.object().shape({
-    cep: yup
+  address: yup.object().shape({
+    zipCode: yup
       .string()
       .required("CEP é obrigatório")
       .matches(/^\d{5}-\d{3}$/, "Formato inválido"),
-    estado: yup
+    state: yup
       .string()
       .required("Estado é obrigatório")
       .matches(/^[A-Z]{2}$/, "Estado deve ter 2 letras maiúsculas"),
-    cidade: yup
+    city: yup
       .string()
       .required("Cidade é obrigatória")
       .matches(/^[a-zA-Z ]*$/, "Cidade deve ser alfabética"),
-    logradouro: yup
+    street: yup
       .string()
       .required("Logradouro é obrigatório")
       .matches(/^[a-zA-Z0-9 ]*$/, "Logradouro deve ser alfanumérico"),
-    numero: yup
+    number: yup
       .string()
       .required("Número é obrigatório")
       .matches(/^\d+$/, "Número deve ser numérico"),
-    referencia: yup
+    reference: yup
       .string()
       .matches(/^[a-zA-Z0-9 ]*$/, "Referência deve ser alfanumérica"),
   }),
 });
 
-interface ModalFornecedorProps {
-  aberto: boolean;
-  onFechar: () => void;
-  onSalvar: (fornecedor: Fornecedor) => void;
-  fornecedor: Fornecedor | null;
+interface SupplierModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (supplier: Supplier) => void;
+  supplier: Supplier | null;
 }
 
 const FormContainer = styled.form`
@@ -86,71 +86,72 @@ const FormContainer = styled.form`
   padding-right: 0.5rem;
 `;
 
-export function ModalFornecedor({
-  aberto,
-  onFechar,
-  onSalvar,
-  fornecedor,
-}: ModalFornecedorProps) {
+export function SupplierModal({
+  isOpen,
+  onClose,
+  onSave,
+  supplier,
+}: SupplierModalProps) {
   const form = useForm<yup.InferType<typeof formSchema>>({
     resolver: yupResolver(formSchema),
     defaultValues: {
       id: "",
-      nome: "",
-      descricao: "",
-      contatos: [{ nome: "", telefone: "" }],
-      endereco: {
-        cep: "",
-        estado: "",
-        cidade: "",
-        logradouro: "",
-        numero: "",
-        referencia: "",
+      name: "",
+      description: "",
+      contacts: [{ name: "", telephone: "" }],
+      address: {
+        zipCode: "",
+        state: "",
+        city: "",
+        street: "",
+        number: "",
+        reference: "",
       },
     },
   });
 
   useEffect(() => {
-    if (fornecedor) {
-      form.reset(fornecedor);
+    if (supplier) {
+      form.reset(supplier);
     } else {
       form.reset({
         id: "",
-        nome: "",
-        descricao: "",
-        contatos: [{ nome: "", telefone: "" }],
-        endereco: {
-          cep: "",
-          estado: "",
-          cidade: "",
-          logradouro: "",
-          numero: "",
-          referencia: "",
+        name: "",
+        description: "",
+        contacts: [{ name: "", telephone: "" }],
+        address: {
+          zipCode: "",
+          state: "",
+          city: "",
+          street: "",
+          number: "",
+          reference: "",
         },
       });
     }
-  }, [fornecedor, form]);
+  }, [supplier, form]);
 
   const onSubmit = (values: yup.InferType<typeof formSchema>) => {
-    onSalvar(values as Fornecedor);
+    console.log({ values });
+    onSave(values as Supplier);
   };
 
   return (
-    <Dialog open={aberto} onOpenChange={onFechar}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogCloseButton>
           <X size={20} />
         </DialogCloseButton>
         <DialogHeader>
           <DialogTitle>
-            {fornecedor ? "Editar Fornecedor" : "Novo Fornecedor"}
+            {supplier ? "Editar Fornecedor" : "Novo Fornecedor"}
           </DialogTitle>
         </DialogHeader>
         <FormProvider {...form}>
           <FormContainer onSubmit={form.handleSubmit(onSubmit)}>
-            <FornecedorForm />
+            <SupplierForm />
             <DialogFooter>
-              <Button type="button" variant="ghost" onClick={onFechar}>
+              <Button type="button" variant="ghost" onClick={onClose}>
                 Cancelar
               </Button>
               <Button type="submit">Salvar</Button>

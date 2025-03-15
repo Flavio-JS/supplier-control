@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Fornecedores } from "./components/Fornecedores/fornecedores";
+import { Suppliers } from "./components/Suppliers/suppliers";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import ThemeToggleButton from "./components/ThemeToggleButton/theme-toggle-button";
 import useGetTheme from "./hooks/useGetTheme";
@@ -30,7 +30,7 @@ function App() {
       <MainContainer>
         <Title>Gerenciamento de Fornecedores</Title>
         <ThemeToggleButton />
-        <Fornecedores />
+        <Suppliers />
       </MainContainer>
     </StyledThemeProvider>
   );

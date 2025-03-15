@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { Input } from "../ui/Input/input";
 import axios from "axios";
-import { formatCep } from "../../utils/formatCep";
+import { formatZipCode } from "../../utils/formatZipCode";
 import {
   FormField,
   FormItem,
@@ -10,14 +10,14 @@ import {
   FormMessage,
 } from "../ui/Form/form";
 
-export function EnderecoForm() {
+export function AddressForm() {
   const { control, setValue } = useFormContext();
 
   return (
     <>
       <FormField
         control={control}
-        name="endereco.cep"
+        name="address.zipCode"
         render={({ field }) => (
           <FormItem>
             <FormLabel>CEP*</FormLabel>
@@ -26,19 +26,16 @@ export function EnderecoForm() {
                 placeholder="00000-000"
                 value={field.value}
                 onChange={(e) => {
-                  const formattedCep = formatCep(e.target.value);
-                  field.onChange(formattedCep);
-                  if (formattedCep.length === 9) {
-                    const cep = formattedCep.replace(/\D/g, "");
+                  const formattedZipCode = formatZipCode(e.target.value);
+                  field.onChange(formattedZipCode);
+                  if (formattedZipCode.length === 9) {
+                    const zipCode = formattedZipCode.replace(/\D/g, "");
                     axios
-                      .get(`https://viacep.com.br/ws/${cep}/json/`)
+                      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
                       .then((response) => {
-                        setValue("endereco.estado", response.data.uf);
-                        setValue("endereco.cidade", response.data.localidade);
-                        setValue(
-                          "endereco.logradouro",
-                          response.data.logradouro
-                        );
+                        setValue("address.state", response.data.uf);
+                        setValue("address.city", response.data.localidade);
+                        setValue("address.street", response.data.logradouro);
                       });
                   }
                 }}
@@ -50,7 +47,7 @@ export function EnderecoForm() {
       />
       <FormField
         control={control}
-        name="endereco.estado"
+        name="address.state"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Estado*</FormLabel>
@@ -63,7 +60,7 @@ export function EnderecoForm() {
       />
       <FormField
         control={control}
-        name="endereco.cidade"
+        name="address.city"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Cidade*</FormLabel>
@@ -76,7 +73,7 @@ export function EnderecoForm() {
       />
       <FormField
         control={control}
-        name="endereco.logradouro"
+        name="address.street"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Logradouro*</FormLabel>
@@ -89,7 +86,7 @@ export function EnderecoForm() {
       />
       <FormField
         control={control}
-        name="endereco.numero"
+        name="address.number"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Número*</FormLabel>
@@ -102,7 +99,7 @@ export function EnderecoForm() {
       />
       <FormField
         control={control}
-        name="endereco.referencia"
+        name="address.reference"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Referência</FormLabel>

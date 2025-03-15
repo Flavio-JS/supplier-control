@@ -9,10 +9,10 @@ import {
   FormControl,
   FormMessage,
 } from "../ui/Form/form";
-import { formatTelefone } from "../../utils/formatTelefone";
+import { formatTelephone } from "../../utils/formatTelephone";
 import { Trash2 } from "lucide-react";
 
-const ContatoWrapper = styled.div`
+const ContactWrapper = styled.div`
   display: flex;
   gap: 1rem;
   align-items: flex-start;
@@ -48,44 +48,44 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const ContatoFormItem = styled(FormItem)`
+const ContactFormItem = styled(FormItem)`
   width: 100%;
 `;
 
-export function ContatoForm() {
+export function ContactForm() {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "contatos",
+    name: "contacts",
   });
 
   if (fields.length === 0) {
-    append({ nome: "", telefone: "" });
+    append({ name: "", telephone: "" });
   }
 
   return (
     <>
       {fields.map((field, index) => (
-        <ContatoWrapper key={field.id}>
+        <ContactWrapper key={field.id}>
           <InputContainer>
             <FormField
               control={control}
-              name={`contatos.${index}.nome`}
+              name={`contacts.${index}.name`}
               render={({ field }) => (
-                <ContatoFormItem>
+                <ContactFormItem>
                   <FormLabel>Nome do Contato*</FormLabel>
                   <FormControl>
                     <Input placeholder="Nome do contato" {...field} />
                   </FormControl>
                   <FormMessage />
-                </ContatoFormItem>
+                </ContactFormItem>
               )}
             />
             <FormField
               control={control}
-              name={`contatos.${index}.telefone`}
+              name={`contacts.${index}.telephone`}
               render={({ field }) => (
-                <ContatoFormItem>
+                <ContactFormItem>
                   <FormLabel>Telefone do Contato*</FormLabel>
                   <FormControl>
                     <Input
@@ -93,7 +93,7 @@ export function ContatoForm() {
                       {...field}
                       value={field.value}
                       onChange={(e) => {
-                        const formattedTelefone = formatTelefone(
+                        const formattedTelefone = formatTelephone(
                           e.target.value
                         );
                         field.onChange(formattedTelefone);
@@ -101,7 +101,7 @@ export function ContatoForm() {
                     />
                   </FormControl>
                   <FormMessage />
-                </ContatoFormItem>
+                </ContactFormItem>
               )}
             />
           </InputContainer>
@@ -116,12 +116,12 @@ export function ContatoForm() {
               </Button>
             )}
           </ButtonWrapper>
-        </ContatoWrapper>
+        </ContactWrapper>
       ))}
       <Button
         type="button"
         variant="outline"
-        onClick={() => append({ nome: "", telefone: "" })}
+        onClick={() => append({ name: "", telephone: "" })}
       >
         Adicionar Contato
       </Button>
