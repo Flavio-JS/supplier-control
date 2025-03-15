@@ -12,7 +12,7 @@ O Supplier Control é uma aplicação CRUD (Create, Read, Update, Delete) desenv
 - **Integração com ViaCEP:** Ao informar o CEP, o sistema preenche automaticamente os campos de endereço.
 - **Mensagens de Feedback:** Exibe mensagens de sucesso ou falha ao realizar ações como cadastrar, editar ou excluir fornecedores.
 - **Responsividade:** A aplicação é totalmente responsiva, funcionando tanto em dispositivos móveis quanto em desktops.
-- **Temas Light e Dark:** A aplicação suporta temas claros e escuros, com cores personalizadas baseadas no tema da VExpenses.
+- **Temas Light e Dark:** A aplicação suporta temas claros e escuros, com cores personalizadas.
 
 ## Tecnologias Utilizadas
 
