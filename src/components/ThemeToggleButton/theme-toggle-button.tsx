@@ -1,61 +1,30 @@
 import React from "react";
-import { useTheme } from "../../context/theme-context";
+import { ThemeName, useTheme } from "../../context/theme-context";
 import styled from "styled-components";
-import { Sun, Moon } from "lucide-react";
-import * as SwitchPrimitives from "@radix-ui/react-switch";
 
-const SwitchRoot = styled(SwitchPrimitives.Root)`
-  width: 42px;
-  height: 24px;
-  background-color: ${({ theme }) => theme.colors.surface};
-  border-radius: 9999px;
-  position: relative;
+const Select = styled.select`
+  padding: 8px;
+  border-radius: 4px;
   border: 2px solid ${({ theme }) => theme.colors.primary};
-  cursor: pointer;
-
-  &[data-state="checked"] {
-    background-color: ${({ theme }) => theme.colors.primary};
-  }
-`;
-
-const SwitchThumb = styled(SwitchPrimitives.Thumb)`
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-color: ${({ theme }) => theme.colors.textOnPrimary};
-  border-radius: 9999px;
-  transition: transform 100ms;
-  transform: translateX(2px);
-  will-change: transform;
-
-  &[data-state="checked"] {
-    transform: translateX(18px);
-  }
-`;
-
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.textPrimary};
+  cursor: pointer;
 `;
 
 const ThemeToggleButton: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setTheme(event.target.value as ThemeName);
+  };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-      <IconContainer>
-        <Sun size={16} />
-      </IconContainer>
-      <SwitchRoot checked={theme === "dark"} onCheckedChange={toggleTheme}>
-        <SwitchThumb />
-      </SwitchRoot>
-      <IconContainer>
-        <Moon size={16} />
-      </IconContainer>
-    </div>
+    <Select value={theme} onChange={handleThemeChange}>
+      <option value="light">Tema VExpenses (Claro)</option>
+      <option value="dark">Tema VExpenses (Escuro)</option>
+      <option value="light2">Tema Secundário (Claro)</option>
+      <option value="dark2">Tema Secundário (Escuro)</option>
+    </Select>
   );
 };
 
