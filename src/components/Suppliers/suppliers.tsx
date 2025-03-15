@@ -184,7 +184,7 @@ export function Suppliers() {
                   style={{ gap: "0.5rem" }}
                   onClick={exportToExcel}
                 >
-                  <ExternalLink /> Excel
+                  <ExternalLink /> XLSX
                 </Button>
               </PopoverContent>
             </Popover>
