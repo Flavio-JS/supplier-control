@@ -120,23 +120,6 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 ## Estrutura do Projeto
 
-src/
-├── assets/
-├── components/
-│ ├── Component/
-│ │ └── component.tsx
-│ ├── ui/
-│ │ └── BaseComponent/
-│ │ └── base-component.tsx
-├── context/
-│ └── theme-context.tsx
-├── hooks/
-├── services/
-├── styles/
-├── utils/
-└── App.tsx
-
-
 - **src/assets/:** Contém arquivos estáticos, como imagens.
 - **src/components/:** Componentes reutilizáveis da aplicação.
   - **ui/:** Componentes base da interface do usuário.
