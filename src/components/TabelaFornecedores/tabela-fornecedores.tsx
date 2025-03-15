@@ -1,4 +1,4 @@
-import { Edit, Trash2 } from "lucide-react";
+import { Edit, MessageCircle, Trash2 } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -30,6 +30,16 @@ const ResponsiveTable = styled.div`
       // Endereço
       display: none;
     }
+  }
+`;
+
+const IconWrapper = styled.a`
+  color: #25d366;
+  transition: color 1s ease, transform 0.5s ease;
+
+  &:hover {
+    color: #128c7e;
+    transform: rotate(10deg);
   }
 `;
 
@@ -82,11 +92,37 @@ export function TabelaFornecedores({
                   </div>
                 </TableCell>
                 <TableCell>
-                  {fornecedor.contatos.map((contato, index) => (
-                    <div key={index}>
-                      {contato.nome}: {contato.telefone}
-                    </div>
-                  ))}
+                  {fornecedor.contatos.map((contato, index) => {
+                    const telefoneFormatado = contato.telefone.replace(
+                      /\D/g,
+                      ""
+                    );
+                    const whatsappLink = `https://wa.me/${telefoneFormatado}`;
+
+                    return (
+                      <div
+                        key={index}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
+                      >
+                        <span>
+                          {contato.nome}: {contato.telefone}
+                        </span>
+
+                        <IconWrapper
+                          href={whatsappLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ textDecoration: "none" }}
+                        >
+                          <MessageCircle size={20} />
+                        </IconWrapper>
+                      </div>
+                    );
+                  })}
                 </TableCell>
                 <TableCell>
                   <div

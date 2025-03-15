@@ -18,6 +18,7 @@ const formSchema = yup.object({
   nome: yup
     .string()
     .min(2, "Nome deve ter pelo menos 2 caracteres")
+    .matches(/^[a-zA-Z0-9 ]*$/, "Nome deve ser alfanumérica")
     .required("Nome é obrigatório")
     .max(75, "Nome deve ter no máximo 75 caracteres"),
   descricao: yup

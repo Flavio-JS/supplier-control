@@ -1,45 +1,859 @@
 {
   "fornecedores": [
     {
-      "id": "2e990d26-5b27-437d-8077-806422622748",
-      "nome": "Teste",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste",
+      "id": "3a1b2c3d-4e5f-6789-0abc-def123456789",
+      "nome": "Distribuidora Sao",
+      "descricao": "Fornecedor de produtos eletronicos e acessorios para revenda",
       "contatos": [
         {
-          "nome": "Teste",
-          "telefone": "(11) 11111-1111"
+          "nome": "Carlos Mendes",
+          "telefone": "(11) 91234-5678"
         },
         {
-          "nome": "Testedois",
-          "telefone": "(22) 22222-2222"
+          "nome": "Fernanda Souza",
+          "telefone": "(11) 93456-7890"
         }
       ],
       "endereco": {
-        "cep": "75402-680",
-        "estado": "GO",
-        "cidade": "Inhumas",
-        "logradouro": "Rua 1",
-        "numero": "00",
-        "referencia": "Lorem ipsum dolor sit amet consectetur adipisicing elit Aut iste"
+        "cep": "01001-000",
+        "estado": "SP",
+        "cidade": "Sao Paulo",
+        "logradouro": "Praca da Se",
+        "numero": "1020",
+        "referencia": "Proximo ao Shopping Central"
       }
     },
     {
-      "id": "b386c9ec-de6f-4bd1-8982-c6d823126a80",
-      "nome": "tes",
-      "descricao": "testefgf",
+      "id": "5b2a3c4d-6e7f-8901-2abc-def234567890",
+      "nome": "Comercial Minas Gerais",
+      "descricao": "Especializados em produtos alimenticios e bebidas para mercados",
       "contatos": [
         {
-          "nome": "sdfsdfsdf",
-          "telefone": "(22) 22222-2222"
+          "nome": "Mariana Oliveira",
+          "telefone": "(31) 99876-5432"
         }
       ],
       "endereco": {
-        "cep": "44444-444",
+        "cep": "30130-000",
+        "estado": "MG",
+        "cidade": "Belo Horizonte",
+        "logradouro": "Avenida Contorno",
+        "numero": "200",
+        "referencia": "Em frente ao supermercado X"
+      }
+    },
+    {
+      "id": "7c3d4e5f-6a7b-8901-2cde-f34567890123",
+      "nome": "Tecno Solutions",
+      "descricao": "Fornecedor de equipamentos de informatica e assistencia tecnica",
+      "contatos": [
+        {
+          "nome": "Ricardo Lima",
+          "telefone": "(21) 98765-4321"
+        },
+        {
+          "nome": "Ana Beatriz",
+          "telefone": "(21) 97654-3210"
+        }
+      ],
+      "endereco": {
+        "cep": "20031-010",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "logradouro": "Rua das Tecnologias",
+        "numero": "500",
+        "referencia": "Ao lado do predio empresarial Beta"
+      }
+    },
+    {
+      "id": "9d4e5f6a-7b8c-9012-3def-456789012345",
+      "nome": "AgroBrasil",
+      "descricao": "Fornecimento de insumos agricolas e equipamentos para fazendas",
+      "contatos": [
+        {
+          "nome": "Jose Andrade",
+          "telefone": "(62) 91234-5678"
+        }
+      ],
+      "endereco": {
+        "cep": "74650-010",
+        "estado": "GO",
+        "cidade": "Goiania",
+        "logradouro": "Estrada Rural 45",
+        "numero": "12",
+        "referencia": "Proximo a Fazenda Boa Esperanca"
+      }
+    },
+    {
+      "id": "c5f9e3c7-4f6a-4d2c-9fd9-a3b5e472b56a",
+      "nome": "Distribuidora Oliveira",
+      "descricao": "Fornecimento de produtos alimenticios e bebidas para mercados e restaurantes",
+      "contatos": [
+        {
+          "nome": "Carlos Mendes",
+          "telefone": "(11) 98765-4321"
+        },
+        {
+          "nome": "Juliana Santos",
+          "telefone": "(11) 97654-3210"
+        }
+      ],
+      "endereco": {
+        "cep": "01030-000",
+        "estado": "SP",
+        "cidade": "Sao Paulo",
+        "logradouro": "Avenida Paulista",
+        "numero": "1200",
+        "referencia": "Proximo ao metro Trianon-Masp"
+      }
+    },
+    {
+      "id": "a4e8c9f1-6b2d-431d-9ae4-f2e8475d9abc",
+      "nome": "TecnoFerragens LTDA",
+      "descricao": "Especializada na venda de ferragens e ferramentas industriais",
+      "contatos": [
+        {
+          "nome": "Eduardo Lima",
+          "telefone": "(21) 99876-5432"
+        }
+      ],
+      "endereco": {
+        "cep": "20231-230",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "logradouro": "Rua Riachuelo",
+        "numero": "456",
+        "referencia": "Ao lado da farmacia Sao Joao"
+      }
+    },
+    {
+      "id": "b3d2a5e7-8c6f-4f1a-bd3f-f4e36d9a7cd2",
+      "nome": "Moveis & Estilo",
+      "descricao": "Fabrica e venda de moveis planejados para residencias e escritorios",
+      "contatos": [
+        {
+          "nome": "Fernanda Rocha",
+          "telefone": "(31) 95544-7788"
+        },
+        {
+          "nome": "Gustavo Pereira",
+          "telefone": "(31) 94433-6677"
+        }
+      ],
+      "endereco": {
+        "cep": "30140-100",
+        "estado": "MG",
+        "cidade": "Belo Horizonte",
+        "logradouro": "Rua Goias",
+        "numero": "321",
+        "referencia": "Proximo a Praca da Liberdade"
+      }
+    },
+    {
+      "id": "d2f4c1a9-7e8d-456b-a6c2-e2a478b9efcd",
+      "nome": "Eletronica Silva",
+      "descricao": "Fornecedor de componentes eletronicos e assistencia tecnica",
+      "contatos": [
+        {
+          "nome": "Roberto Nunes",
+          "telefone": "(41) 98765-1111"
+        }
+      ],
+      "endereco": {
+        "cep": "80010-100",
+        "estado": "PR",
+        "cidade": "Curitiba",
+        "logradouro": "Rua Marechal Deodoro",
+        "numero": "987",
+        "referencia": "Em frente ao Shopping Curitiba"
+      }
+    },
+    {
+      "id": "e6d7b8c2-1f3a-4b9c-a7d6-e3b56a9d1bca",
+      "nome": "Agricola Verde",
+      "descricao": "Fornecimento de insumos agricolas e produtos para fazendas",
+      "contatos": [
+        {
+          "nome": "Luciana Alves",
+          "telefone": "(62) 99887-5566"
+        }
+      ],
+      "endereco": {
+        "cep": "74650-090",
+        "estado": "GO",
+        "cidade": "Goiania",
+        "logradouro": "Avenida Anhanguera",
+        "numero": "654",
+        "referencia": "Proximo ao terminal da Praca A"
+      }
+    },
+    {
+      "id": "f3a6c7d2-8e5b-432c-a6b4-c5d89e7f2ab1",
+      "nome": "Confeitaria Doce Vida",
+      "descricao": "Producao e venda de doces, bolos e sobremesas para eventos",
+      "contatos": [
+        {
+          "nome": "Mariana Oliveira",
+          "telefone": "(81) 99987-2233"
+        },
+        {
+          "nome": "Pedro Lima",
+          "telefone": "(81) 99876-3344"
+        }
+      ],
+      "endereco": {
+        "cep": "50030-220",
+        "estado": "PE",
+        "cidade": "Recife",
+        "logradouro": "Rua da Aurora",
+        "numero": "876",
+        "referencia": "Em frente ao Teatro Santa Isabel"
+      }
+    },
+    {
+      "id": "c9e4b2f7-3a6d-4e1b-a9c2-d8e6b3a1f6cd",
+      "nome": "Auto Pecas Brasil",
+      "descricao": "Distribuidor de pecas automotivas para carros e motos",
+      "contatos": [
+        {
+          "nome": "Ricardo Tavares",
+          "telefone": "(92) 98765-9988"
+        }
+      ],
+      "endereco": {
+        "cep": "69010-020",
+        "estado": "AM",
+        "cidade": "Manaus",
+        "logradouro": "Avenida Constantino Nery",
+        "numero": "1100",
+        "referencia": "Proximo ao Shopping Millenium"
+      }
+    },
+    {
+      "id": "d8b3e6f7-2c1a-4d9b-a7e5-f3c6a9b2d1cd",
+      "nome": "PetShop Amigos Fiel",
+      "descricao": "Vendas de produtos pet e servicos veterinarios",
+      "contatos": [
+        {
+          "nome": "Patricia Mendes",
+          "telefone": "(71) 98877-6655"
+        }
+      ],
+      "endereco": {
+        "cep": "41830-290",
         "estado": "BA",
-        "cidade": "Santo Antonio de Jesus",
-        "logradouro": "Rua Via Coletora B",
-        "numero": "123",
-        "referencia": "Predio ABC"
+        "cidade": "Salvador",
+        "logradouro": "Avenida Tancredo Neves",
+        "numero": "150",
+        "referencia": "Em frente ao Salvador Shopping"
+      }
+    },
+    {
+      "id": "e7c6d9a3-4b8f-4d2c-a7b3-f6e1c2a9d5cd",
+      "nome": "Loja de Materiais Construir Bem",
+      "descricao": "Venda de materiais de construcao e reformas",
+      "contatos": [
+        {
+          "nome": "Marcos Silva",
+          "telefone": "(84) 99988-7766"
+        }
+      ],
+      "endereco": {
+        "cep": "59020-110",
+        "estado": "RN",
+        "cidade": "Natal",
+        "logradouro": "Rua Joao Pessoa",
+        "numero": "234",
+        "referencia": "Proximo a Praca 7 de Setembro"
+      }
+    },
+    {
+      "id": "b3a7c8d2-5f6e-4d9b-a2c1-d7e6f9b3a4cd",
+      "nome": "Atacado Bom Preco",
+      "descricao": "Distribuicao de produtos alimenticios e limpeza para mercados e empresas",
+      "contatos": [
+        {
+          "nome": "Joao Batista",
+          "telefone": "(98) 98876-5544"
+        }
+      ],
+      "endereco": {
+        "cep": "65020-090",
+        "estado": "MA",
+        "cidade": "Sao Luis",
+        "logradouro": "Avenida dos Holandeses",
+        "numero": "432",
+        "referencia": "Proximo ao Shopping da Ilha"
+      }
+    },
+    {
+      "id": "95f2307f-4fa2-4981-ac78-38edd9c35e13",
+      "nome": "Seguranca Eletronica Tech",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Larissa",
+          "telefone": "(21) 92164-9903"
+        }
+      ],
+      "endereco": {
+        "cep": "38486-494",
+        "estado": "BA",
+        "cidade": "Salvador",
+        "logradouro": "Avenida Central",
+        "numero": "2154",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "13436240-d5d3-4797-a191-1aab9488e209",
+      "nome": "Importadora Global",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Renata",
+          "telefone": "(51) 99409-2258"
+        }
+      ],
+      "endereco": {
+        "cep": "85398-448",
+        "estado": "MT",
+        "cidade": "Cuiaba",
+        "logradouro": "Travessa dos Pioneiros",
+        "numero": "8363",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "96ec48ce-c58c-4a40-a64e-5c124fcbf9aa",
+      "nome": "Iluminacao Moderna",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Renata",
+          "telefone": "(57) 98762-7211"
+        }
+      ],
+      "endereco": {
+        "cep": "63195-219",
+        "estado": "SP",
+        "cidade": "Sao Paulo",
+        "logradouro": "Rua das Palmeiras",
+        "numero": "4781",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "31463e11-3283-49f8-8bd2-961893a6051d",
+      "nome": "Eventos & Festas",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Pedro",
+          "telefone": "(47) 93863-3990"
+        }
+      ],
+      "endereco": {
+        "cep": "91841-258",
+        "estado": "SC",
+        "cidade": "Florianopolis",
+        "logradouro": "Rua XV de Novembro",
+        "numero": "3079",
+        "referencia": "Atras da Prefeitura"
+      }
+    },
+    {
+      "id": "fdb0d496-813a-4016-9879-87d1730e2078",
+      "nome": "Seguranca Eletronica Tech",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Joao",
+          "telefone": "(48) 95992-5248"
+        }
+      ],
+      "endereco": {
+        "cep": "89835-708",
+        "estado": "SC",
+        "cidade": "Florianopolis",
+        "logradouro": "Rua das Palmeiras",
+        "numero": "2148",
+        "referencia": "Perto da Estacao de Metro"
+      }
+    },
+    {
+      "id": "cf782b32-82e0-4993-ba47-c0ff9d0973ee",
+      "nome": "Moveis Planalto",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Carlos",
+          "telefone": "(33) 98972-6739"
+        }
+      ],
+      "endereco": {
+        "cep": "53142-509",
+        "estado": "CE",
+        "cidade": "Fortaleza",
+        "logradouro": "Alameda das Rosas",
+        "numero": "929",
+        "referencia": "Proximo ao Shopping Center"
+      }
+    },
+    {
+      "id": "12798115-4b6e-4ea9-acc8-5ce2b161ced8",
+      "nome": "Vidracaria Cristal",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Juliana",
+          "telefone": "(60) 99169-4300"
+        }
+      ],
+      "endereco": {
+        "cep": "75413-294",
+        "estado": "SC",
+        "cidade": "Florianopolis",
+        "logradouro": "Alameda das Rosas",
+        "numero": "8897",
+        "referencia": "Em frente ao Hospital Regional"
+      }
+    },
+    {
+      "id": "c648abe2-3915-41fa-9094-7f4f6e8071fd",
+      "nome": "Auto Center Rapido",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Roberto",
+          "telefone": "(62) 97298-7822"
+        }
+      ],
+      "endereco": {
+        "cep": "37314-679",
+        "estado": "BA",
+        "cidade": "Salvador",
+        "logradouro": "Travessa dos Pioneiros",
+        "numero": "2808",
+        "referencia": "Em frente a Praca Central"
+      }
+    },
+    {
+      "id": "d3bffe4c-5016-43a2-880d-fcb28703c282",
+      "nome": "Acougue Boi de Ouro",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Joao",
+          "telefone": "(35) 95163-4484"
+        }
+      ],
+      "endereco": {
+        "cep": "11858-589",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "logradouro": "Alameda das Rosas",
+        "numero": "3162",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "9f30cd20-ec96-411c-a973-314e547dbd9e",
+      "nome": "EletroTech Solucoes",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Fernando",
+          "telefone": "(78) 99433-2426"
+        }
+      ],
+      "endereco": {
+        "cep": "72898-452",
+        "estado": "BA",
+        "cidade": "Salvador",
+        "logradouro": "Avenida Central",
+        "numero": "8456",
+        "referencia": "Perto da Estacao de Metro"
+      }
+    },
+    {
+      "id": "407ce7b5-2578-4dd6-96e4-725f215a618f",
+      "nome": "Papelaria Criativa",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Larissa",
+          "telefone": "(75) 94721-9628"
+        }
+      ],
+      "endereco": {
+        "cep": "24059-816",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "logradouro": "Rua dos Comerciantes",
+        "numero": "8448",
+        "referencia": "Atras da Prefeitura"
+      }
+    },
+    {
+      "id": "fa6d79f6-5675-4576-9805-fc97e54a921a",
+      "nome": "Auto Center Rapido",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Juliana",
+          "telefone": "(55) 99215-6231"
+        }
+      ],
+      "endereco": {
+        "cep": "54998-331",
+        "estado": "PR",
+        "cidade": "Curitiba",
+        "logradouro": "Travessa dos Pioneiros",
+        "numero": "9360",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "35bbc6ab-8228-45ff-ae90-a4e33facd736",
+      "nome": "Distribuidora Nordeste",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Larissa",
+          "telefone": "(21) 91225-7500"
+        }
+      ],
+      "endereco": {
+        "cep": "36259-397",
+        "estado": "MG",
+        "cidade": "Belo Horizonte",
+        "logradouro": "Rua XV de Novembro",
+        "numero": "6226",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "057df535-7fb9-4116-807b-45909ea02179",
+      "nome": "Importadora Global",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Roberto",
+          "telefone": "(24) 95858-6004"
+        }
+      ],
+      "endereco": {
+        "cep": "79642-369",
+        "estado": "BA",
+        "cidade": "Salvador",
+        "logradouro": "Travessa dos Pioneiros",
+        "numero": "3883",
+        "referencia": "Proximo ao Shopping Center"
+      }
+    },
+    {
+      "id": "3912f942-c82f-4188-bc69-a33ff0371aaa",
+      "nome": "Super Bebidas",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Pedro",
+          "telefone": "(81) 97518-4202"
+        }
+      ],
+      "endereco": {
+        "cep": "99796-570",
+        "estado": "PE",
+        "cidade": "Recife",
+        "logradouro": "Rua dos Comerciantes",
+        "numero": "415",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "ba96267c-9cdf-43a2-862c-7ef23f8cf07a",
+      "nome": "Ferramentas Brasil",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Larissa",
+          "telefone": "(71) 93945-9804"
+        }
+      ],
+      "endereco": {
+        "cep": "13630-254",
+        "estado": "CE",
+        "cidade": "Fortaleza",
+        "logradouro": "Rua XV de Novembro",
+        "numero": "5122",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "ddc8f33c-358b-4d78-95d8-d37a3aedaf28",
+      "nome": "Pet Shop Amigo Fiel",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Carlos",
+          "telefone": "(17) 97229-8422"
+        }
+      ],
+      "endereco": {
+        "cep": "50635-696",
+        "estado": "SP",
+        "cidade": "Sao Paulo",
+        "logradouro": "Alameda das Rosas",
+        "numero": "9508",
+        "referencia": "Perto da Estacao de Metro"
+      }
+    },
+    {
+      "id": "1b0cbd29-2544-496e-a2bd-0079c639ffb9",
+      "nome": "Manutencao Express",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Fernando",
+          "telefone": "(14) 96052-4273"
+        }
+      ],
+      "endereco": {
+        "cep": "94628-177",
+        "estado": "RS",
+        "cidade": "Porto Alegre",
+        "logradouro": "Avenida Central",
+        "numero": "9896",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "9022512f-2745-414a-9462-94443eb4f556",
+      "nome": "Pet Shop Amigo Fiel",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Gustavo",
+          "telefone": "(21) 94271-5380"
+        }
+      ],
+      "endereco": {
+        "cep": "10618-899",
+        "estado": "MG",
+        "cidade": "Belo Horizonte",
+        "logradouro": "Rua XV de Novembro",
+        "numero": "901",
+        "referencia": "Ao lado da Escola Tecnica"
+      }
+    },
+    {
+      "id": "4da4c516-8e2a-4e39-b865-f3f23fe4a152",
+      "nome": "EletroTech Solucoes",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Andre",
+          "telefone": "(43) 92197-7575"
+        }
+      ],
+      "endereco": {
+        "cep": "14879-859",
+        "estado": "SP",
+        "cidade": "Sao Paulo",
+        "logradouro": "Rua dos Comerciantes",
+        "numero": "9999",
+        "referencia": "Ao lado da Escola Tecnica"
+      }
+    },
+    {
+      "id": "60ee13d3-e281-4a4b-b36d-6f0d331e26c9",
+      "nome": "Panificadora Delicia",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Pedro",
+          "telefone": "(72) 93499-5034"
+        }
+      ],
+      "endereco": {
+        "cep": "70220-529",
+        "estado": "RS",
+        "cidade": "Porto Alegre",
+        "logradouro": "Avenida Central",
+        "numero": "3702",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "daaf3204-1556-4c1e-8393-1e7db2815caa",
+      "nome": "Reciclaveis Sustentaveis",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Luciana",
+          "telefone": "(78) 92859-5707"
+        }
+      ],
+      "endereco": {
+        "cep": "67177-382",
+        "estado": "BA",
+        "cidade": "Salvador",
+        "logradouro": "Rua das Palmeiras",
+        "numero": "8046",
+        "referencia": "Ao lado do Banco do Brasil"
+      }
+    },
+    {
+      "id": "0f8e5aa8-3db1-450c-acfe-c1a04fdaf449",
+      "nome": "Casa das Tintas",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Ricardo",
+          "telefone": "(50) 91931-3773"
+        }
+      ],
+      "endereco": {
+        "cep": "78976-989",
+        "estado": "PE",
+        "cidade": "Recife",
+        "logradouro": "Rua XV de Novembro",
+        "numero": "6592",
+        "referencia": "Em frente a Praca Central"
+      }
+    },
+    {
+      "id": "ac315c84-547b-4f7e-961e-0fb54f0b357d",
+      "nome": "Eventos & Festas",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Juliana",
+          "telefone": "(54) 97738-4333"
+        }
+      ],
+      "endereco": {
+        "cep": "58229-524",
+        "estado": "BA",
+        "cidade": "Salvador",
+        "logradouro": "Estrada da Serra",
+        "numero": "6142",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "0bcf522e-e82f-42fd-8a1b-b62108a64c99",
+      "nome": "Seguranca Eletronica Tech",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Larissa",
+          "telefone": "(73) 95187-1989"
+        }
+      ],
+      "endereco": {
+        "cep": "20332-534",
+        "estado": "CE",
+        "cidade": "Fortaleza",
+        "logradouro": "Rua das Palmeiras",
+        "numero": "3964",
+        "referencia": "Atras da Prefeitura"
+      }
+    },
+    {
+      "id": "b52e4ca1-c67d-4a12-a20e-37b62799c977",
+      "nome": "Manutencao Express",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Luciana",
+          "telefone": "(81) 98297-5816"
+        }
+      ],
+      "endereco": {
+        "cep": "64053-517",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "logradouro": "Avenida Central",
+        "numero": "8236",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "b0136746-bbc6-48aa-815a-f898bb5ac8b2",
+      "nome": "Doces e Cia",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Fernando",
+          "telefone": "(27) 96944-9598"
+        }
+      ],
+      "endereco": {
+        "cep": "82797-495",
+        "estado": "GO",
+        "cidade": "Goiania",
+        "logradouro": "Rua das Palmeiras",
+        "numero": "3116",
+        "referencia": "Proximo ao Shopping Center"
+      }
+    },
+    {
+      "id": "56e3882a-07b3-4e4d-b13d-20a95852eb6f",
+      "nome": "Grafica Rapida",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Roberto",
+          "telefone": "(83) 93585-8051"
+        }
+      ],
+      "endereco": {
+        "cep": "64645-171",
+        "estado": "RJ",
+        "cidade": "Rio de Janeiro",
+        "logradouro": "Travessa dos Pioneiros",
+        "numero": "9173",
+        "referencia": "Proximo ao Mercado Municipal"
+      }
+    },
+    {
+      "id": "24ce06f9-3bf1-45fd-806c-59839fee6584",
+      "nome": "Tecidos & Costura",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Carlos",
+          "telefone": "(94) 94638-1679"
+        }
+      ],
+      "endereco": {
+        "cep": "68444-593",
+        "estado": "RS",
+        "cidade": "Porto Alegre",
+        "logradouro": "Rua dos Comerciantes",
+        "numero": "1547",
+        "referencia": "Proximo ao Shopping Center"
+      }
+    },
+    {
+      "id": "6c90ddbc-eaae-442d-a916-dca2a0a8cd7b",
+      "nome": "Manutencao Express",
+      "descricao": "Fornecedor de produtos e servicos variados",
+      "contatos": [
+        {
+          "nome": "Carlos",
+          "telefone": "(12) 92399-6828"
+        }
+      ],
+      "endereco": {
+        "cep": "74573-144",
+        "estado": "PR",
+        "cidade": "Curitiba",
+        "logradouro": "Alameda das Rosas",
+        "numero": "4425",
+        "referencia": "Em frente a Praca Central"
       }
     }
   ]

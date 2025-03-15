@@ -1,17 +1,24 @@
-import { useState } from "react";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  PaginationEllipsis,
 } from "../ui/Pagination/pagination";
 
-const FornecedoresPagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
+interface FornecedoresPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+export function FornecedoresPagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: FornecedoresPaginationProps) {
   const maxVisiblePages = 5;
 
   const getVisiblePages = () => {
@@ -35,10 +42,10 @@ const FornecedoresPagination = () => {
 
   return (
     <Pagination>
-      <PaginationContent>
+      <PaginationContent style={{ width: "350px", justifyContent: "space-between" }}>
         <PaginationItem>
           <PaginationPrevious
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
             disabled={currentPage === 1}
           />
         </PaginationItem>
@@ -48,7 +55,7 @@ const FornecedoresPagination = () => {
             <PaginationItem>
               <PaginationLink
                 isActive={1 === currentPage}
-                onClick={() => setCurrentPage(1)}
+                onClick={() => onPageChange(1)}
               >
                 1
               </PaginationLink>
@@ -63,7 +70,7 @@ const FornecedoresPagination = () => {
           <PaginationItem key={page}>
             <PaginationLink
               isActive={page === currentPage}
-              onClick={() => setCurrentPage(page)}
+              onClick={() => onPageChange(page)}
             >
               {page}
             </PaginationLink>
@@ -78,7 +85,7 @@ const FornecedoresPagination = () => {
             <PaginationItem>
               <PaginationLink
                 isActive={totalPages === currentPage}
-                onClick={() => setCurrentPage(totalPages)}
+                onClick={() => onPageChange(totalPages)}
               >
                 {totalPages}
               </PaginationLink>
@@ -88,15 +95,11 @@ const FornecedoresPagination = () => {
 
         <PaginationItem>
           <PaginationNext
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
+            onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
             disabled={currentPage === totalPages}
           />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
   );
-};
-
-export default FornecedoresPagination;
+}

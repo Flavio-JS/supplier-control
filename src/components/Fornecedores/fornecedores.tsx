@@ -8,7 +8,7 @@ import { TabelaFornecedores } from "../TabelaFornecedores/tabela-fornecedores";
 import { ModalFornecedor } from "../ModalFornecedor/modal-fornecedor";
 import { ModalConfirmacao } from "../ModalConfirmacao/modal-confirmacao";
 import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
-import FornecedoresPagination from "../FornecedoresPagination/fornecedores-pagination";
+import { FornecedoresPagination } from "../FornecedoresPagination/fornecedores-pagination";
 
 const Container = styled.div`
   display: flex;
@@ -29,11 +29,14 @@ const SearchContainer = styled.div`
 
 export function Fornecedores() {
   const {
-    fornecedoresFiltrados,
+    fornecedores: fornecedoresPaginados,
     termoBusca,
     setTermoBusca,
     salvarFornecedor,
     excluirFornecedor,
+    currentPage,
+    totalPages,
+    goToPage,
   } = useFornecedores();
 
   const [modalAberto, setModalAberto] = useState(false);
@@ -102,16 +105,27 @@ export function Fornecedores() {
     }
   };
 
+  const handleSearch = (value: string) => {
+    goToPage(1);
+    setTermoBusca(value);
+  };
+
   return (
     <>
       <Container>
         <SearchContainer>
-          <SearchBar termoBusca={termoBusca} onSearchChange={setTermoBusca} />
+          <SearchBar termoBusca={termoBusca} onSearchChange={handleSearch} />
           <NewSupplierButton onClick={() => abrirModal()} />
         </SearchContainer>
 
+        <FornecedoresPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={goToPage}
+        />
+
         <TabelaFornecedores
-          fornecedores={fornecedoresFiltrados}
+          fornecedores={fornecedoresPaginados}
           onEditar={abrirModal}
           onExcluir={abrirModalExclusao}
         />
@@ -139,7 +153,6 @@ export function Fornecedores() {
           tipo={alertTipo}
         />
       </Container>
-      <FornecedoresPagination />
     </>
   );
 }
