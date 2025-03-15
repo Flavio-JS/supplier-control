@@ -11,7 +11,6 @@ import {
 } from "react-hook-form";
 import styled from "styled-components";
 
-// Estilos para o FormItem
 const FormItemContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,30 +21,26 @@ interface FormLabelStyledProps {
   error?: boolean;
 }
 
-// Estilos para o FormLabel
 const FormLabelStyled = styled(LabelPrimitive.Root)<FormLabelStyledProps>`
   font-size: 0.875rem;
   font-weight: 500;
-  color: ${({ error }) => (error ? "#dc2626" : "#374151")};
+  color: ${({ theme, error }) =>
+    error ? theme.colors.error : theme.colors.textPrimary};
 `;
 
-// Estilos para o FormDescription
 const FormDescriptionStyled = styled.p`
   font-size: 0.875rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
-// Estilos para o FormMessage
 const FormMessageStyled = styled.p`
   font-size: 0.875rem;
   font-weight: 500;
-  color: #dc2626;
+  color: ${({ theme }) => theme.colors.error}; 
 `;
 
-// Componente Form (raiz)
 const Form = FormProvider;
 
-// Contexto para FormField
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -57,7 +52,6 @@ const FormFieldContext = React.createContext<FormFieldContextValue>(
   {} as FormFieldContextValue
 );
 
-// Componente FormField
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -71,7 +65,6 @@ const FormField = <
   );
 };
 
-// Hook para acessar o contexto do FormField
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext);
   const itemContext = React.useContext(FormItemContext);
@@ -95,7 +88,6 @@ const useFormField = () => {
   };
 };
 
-// Contexto para FormItem
 type FormItemContextValue = {
   id: string;
 };
@@ -104,7 +96,6 @@ const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue
 );
 
-// Componente FormItem
 const FormItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -119,7 +110,6 @@ const FormItem = React.forwardRef<
 });
 FormItem.displayName = "FormItem";
 
-// Componente FormLabel
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & {
@@ -139,7 +129,6 @@ const FormLabel = React.forwardRef<
 });
 FormLabel.displayName = "FormLabel";
 
-// Componente FormControl
 const FormControl = React.forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
@@ -163,7 +152,6 @@ const FormControl = React.forwardRef<
 });
 FormControl.displayName = "FormControl";
 
-// Componente FormDescription
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
@@ -174,7 +162,6 @@ const FormDescription = React.forwardRef<
 });
 FormDescription.displayName = "FormDescription";
 
-// Componente FormMessage
 const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
@@ -194,7 +181,6 @@ const FormMessage = React.forwardRef<
 });
 FormMessage.displayName = "FormMessage";
 
-// Exportação dos componentes
 export {
   useFormField,
   Form,

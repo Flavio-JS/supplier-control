@@ -21,6 +21,11 @@ interface TabelaFornecedoresProps {
 }
 
 const ResponsiveTable = styled.div`
+  background-color: ${({ theme }) => theme.colors.surface}; // Fundo da tabela
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   @media (max-width: 768px) {
     th:nth-child(2), // Descrição
     th:nth-child(3), // Contato(s)
@@ -35,11 +40,11 @@ const ResponsiveTable = styled.div`
 `;
 
 const IconWrapper = styled.a`
-  color: #25d366;
-  transition: color 1s ease, transform 0.5s ease;
+  color: ${({ theme }) => theme.colors.secondary};
+  transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: #128c7e;
+    color: ${({ theme }) => theme.colors.primary};
     transform: rotate(10deg);
   }
 `;
@@ -48,6 +53,22 @@ const MobileOnlyButton = styled(Button)`
   @media (min-width: 769px) {
     display: none;
   }
+`;
+
+const ActionsCell = styled(TableCell)`
+  text-align: right;
+`;
+
+const EmptyCell = styled(TableCell)`
+  text-align: center;
+  padding: 1.5rem;
+  color: ${({ theme }) =>
+    theme.colors
+      .textSecondary};
+`;
+
+const NameCell = styled(TableCell)`
+  font-weight: 500;
 `;
 
 export function TabelaFornecedores({
@@ -65,39 +86,20 @@ export function TabelaFornecedores({
             <TableHead>Descrição</TableHead>
             <TableHead>Contato(s)</TableHead>
             <TableHead>Endereço</TableHead>
-            <TableHead style={{ textAlign: "right" }}>Ações</TableHead>
+            <TableHead>Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {!fornecedores || fornecedores.length === 0 ? (
             <TableRow>
-              <TableCell
-                colSpan={5}
-                style={{
-                  textAlign: "center",
-                  padding: "1.5rem",
-                  color: "#a0aec0",
-                }}
-              >
-                Nenhum fornecedor encontrado
-              </TableCell>
+              <EmptyCell colSpan={5}>Nenhum fornecedor encontrado</EmptyCell>
             </TableRow>
           ) : (
             fornecedores.map((fornecedor) => (
               <TableRow key={fornecedor.id}>
-                <TableCell style={{ fontWeight: "500" }}>
-                  {fornecedor.nome}
-                </TableCell>
+                <NameCell>{fornecedor.nome}</NameCell>
                 <TableCell>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <FormatedDescription value={fornecedor.descricao} />
-                  </div>
+                  <FormatedDescription value={fornecedor.descricao} />
                 </TableCell>
                 <TableCell>
                   {fornecedor.contatos.map((contato, index) => {
@@ -120,31 +122,22 @@ export function TabelaFornecedores({
                         <span>
                           {contato.nome}: {contato.telefone}
                         </span>
-
                         <IconWrapper
                           href={whatsappLink}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{ textDecoration: "none" }}
                         >
-                          <MessageCircle size={20} />
+                          <MessageCircle fill="currentColor" size={20} />
                         </IconWrapper>
                       </div>
                     );
                   })}
                 </TableCell>
                 <TableCell>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <FormattedAddress value={fornecedor.endereco} />
-                  </div>
+                  <FormattedAddress value={fornecedor.endereco} />
                 </TableCell>
-                <TableCell style={{ textAlign: "right" }}>
+                <ActionsCell>
                   <div
                     style={{
                       display: "flex",
@@ -157,7 +150,7 @@ export function TabelaFornecedores({
                       size="small"
                       onClick={() => onVisualizar(fornecedor)}
                     >
-                      <Eye style={{ height: "1rem", width: "1rem" }} />
+                      <Eye size={16} />
                     </MobileOnlyButton>
 
                     <Button
@@ -165,7 +158,7 @@ export function TabelaFornecedores({
                       size="small"
                       onClick={() => onEditar(fornecedor)}
                     >
-                      <Edit style={{ height: "1rem", width: "1rem" }} />
+                      <Edit size={16} />
                     </Button>
 
                     <Button
@@ -173,10 +166,10 @@ export function TabelaFornecedores({
                       size="small"
                       onClick={() => onExcluir(fornecedor)}
                     >
-                      <Trash2 style={{ height: "1rem", width: "1rem" }} />
+                      <Trash2 size={16} />
                     </Button>
                   </div>
-                </TableCell>
+                </ActionsCell>
               </TableRow>
             ))
           )}

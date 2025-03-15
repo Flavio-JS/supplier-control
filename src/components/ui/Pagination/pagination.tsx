@@ -33,17 +33,18 @@ const PaginationLink = styled.a<{ isActive?: boolean; disabled?: boolean }>`
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s;
+  color: ${({ theme }) => theme.colors.textPrimary};
 
-  ${({ isActive }) =>
+  ${({ isActive, theme }) =>
     isActive
       ? `
-    border: 1px solid #d1d5db;
-    background-color: #f3f4f6;
+    border: 1px solid ${theme.colors.textSecondary};
+    background-color: ${theme.colors.surface};
   `
       : `
     background-color: transparent;
     &:hover {
-      background-color: #f3f4f6;
+      background-color: ${theme.colors.surface};
     }
   `}
 
@@ -68,6 +69,7 @@ const PaginationEllipsis = styled.span`
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (

@@ -9,12 +9,19 @@ import {
 } from "../ui/Form/form";
 import { ContatoForm } from "../ContatoForm/contato-form";
 import { EnderecoForm } from "../EnderecoForm/endereco-form";
+import styled from "styled-components";
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
 export function FornecedorForm() {
   const { control } = useFormContext();
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <FormContainer>
       <FormField
         control={control}
         name="nome"
@@ -43,6 +50,6 @@ export function FornecedorForm() {
       />
       <ContatoForm />
       <EnderecoForm />
-    </div>
+    </FormContainer>
   );
 }

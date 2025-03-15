@@ -3,7 +3,6 @@ import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import styled from "styled-components";
 import { Button } from "../Button/button";
 
-// Estilos para o AlertDialogOverlay
 const AlertDialogOverlay = styled(AlertDialogPrimitive.Overlay)`
   position: fixed;
   inset: 0;
@@ -34,7 +33,6 @@ const AlertDialogOverlay = styled(AlertDialogPrimitive.Overlay)`
   }
 `;
 
-// Estilos para o AlertDialogContent
 const AlertDialogContent = styled(AlertDialogPrimitive.Content)`
   position: fixed;
   left: 50%;
@@ -43,7 +41,7 @@ const AlertDialogContent = styled(AlertDialogPrimitive.Content)`
   width: 100%;
   max-width: 32rem;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -76,7 +74,6 @@ const AlertDialogContent = styled(AlertDialogPrimitive.Content)`
   }
 `;
 
-// Estilos para o AlertDialogHeader
 const AlertDialogHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -88,7 +85,6 @@ const AlertDialogHeader = styled.div`
   }
 `;
 
-// Estilos para o AlertDialogFooter
 const AlertDialogFooter = styled.div`
   display: flex;
   flex-direction: column-reverse;
@@ -101,30 +97,25 @@ const AlertDialogFooter = styled.div`
   }
 `;
 
-// Estilos para o AlertDialogTitle
 const AlertDialogTitle = styled(AlertDialogPrimitive.Title)`
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.75rem;
   letter-spacing: -0.025em;
+  color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-// Estilos para o AlertDialogDescription
 const AlertDialogDescription = styled(AlertDialogPrimitive.Description)`
   font-size: 0.875rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
-// Componente AlertDialog (raiz)
 const AlertDialog = AlertDialogPrimitive.Root;
 
-// Componente AlertDialogTrigger
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 
-// Componente AlertDialogPortal
 const AlertDialogPortal = AlertDialogPrimitive.Portal;
 
-// Componente AlertDialogAction
 const AlertDialogAction = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Action>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
@@ -135,7 +126,6 @@ const AlertDialogAction = React.forwardRef<
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 
-// Componente AlertDialogCancel
 const AlertDialogCancel = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Cancel>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
@@ -146,7 +136,6 @@ const AlertDialogCancel = React.forwardRef<
 ));
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
 
-// Exportação dos componentes
 export {
   AlertDialog,
   AlertDialogPortal,

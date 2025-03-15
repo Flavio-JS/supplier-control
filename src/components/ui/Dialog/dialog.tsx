@@ -1,7 +1,6 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-// Estilos para o overlay (fundo escuro)
 const DialogOverlay = styled(DialogPrimitive.Overlay)`
   position: fixed;
   inset: 0;
@@ -32,7 +31,6 @@ const DialogOverlay = styled(DialogPrimitive.Overlay)`
   }
 `;
 
-// Estilos para o conteúdo do modal
 const DialogContent = styled(DialogPrimitive.Content)`
   position: fixed;
   left: 50%;
@@ -41,7 +39,7 @@ const DialogContent = styled(DialogPrimitive.Content)`
   width: 100%;
   max-width: 32rem;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -74,7 +72,6 @@ const DialogContent = styled(DialogPrimitive.Content)`
   }
 `;
 
-// Estilos para o botão de fechar
 const DialogCloseButton = styled(DialogPrimitive.Close)`
   position: absolute;
   right: 1rem;
@@ -83,6 +80,7 @@ const DialogCloseButton = styled(DialogPrimitive.Close)`
   border-radius: 0.25rem;
   opacity: 0.7;
   transition: opacity 0.2s;
+  color: ${({ theme }) => theme.colors.textPrimary};
 
   &:hover {
     opacity: 1;
@@ -90,11 +88,10 @@ const DialogCloseButton = styled(DialogPrimitive.Close)`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary};
   }
 `;
 
-// Estilos para o cabeçalho
 const DialogHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,7 +103,6 @@ const DialogHeader = styled.div`
   }
 `;
 
-// Estilos para o rodapé
 const DialogFooter = styled.div`
   display: flex;
   flex-direction: column-reverse;
@@ -119,33 +115,27 @@ const DialogFooter = styled.div`
   }
 `;
 
-// Estilos para o título
 const DialogTitle = styled(DialogPrimitive.Title)`
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.75rem;
   letter-spacing: -0.025em;
+  color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-// Estilos para a descrição
 const DialogDescription = styled(DialogPrimitive.Description)`
   font-size: 0.875rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary}; 
 `;
 
-// Componente Dialog (raiz)
 const Dialog = DialogPrimitive.Root;
 
-// Componente DialogTrigger
 const DialogTrigger = DialogPrimitive.Trigger;
 
-// Componente DialogPortal
 const DialogPortal = DialogPrimitive.Portal;
 
-// Componente DialogClose
 const DialogClose = DialogPrimitive.Close;
 
-// Exportação dos componentes
 export {
   Dialog,
   DialogPortal,

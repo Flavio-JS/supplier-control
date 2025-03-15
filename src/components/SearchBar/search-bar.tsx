@@ -18,11 +18,18 @@ const SearchIcon = styled(Search)`
   transform: translateY(-50%);
   height: 1rem;
   width: 1rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 const StyledInput = styled(Input)`
   padding-left: 2rem;
+  background-color: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.textPrimary};
+  border: 1px solid ${({ theme }) => theme.colors.textSecondary};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.textSecondary};
+  }
 `;
 
 interface SearchBarProps {

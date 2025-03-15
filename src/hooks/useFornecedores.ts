@@ -26,7 +26,6 @@ export function useFornecedores() {
     fetchFornecedores();
   }, [dbUrl]);
 
-  // Filtrar fornecedores com base no termo de busca
   const fornecedoresFiltrados = useMemo(() => {
     if (termoBusca.trim() === "") {
       return fornecedores;
@@ -37,12 +36,10 @@ export function useFornecedores() {
     }
   }, [termoBusca, fornecedores]);
 
-  // Calcular o total de páginas com base nos fornecedores filtrados
   const totalPages = useMemo(() => {
     return Math.ceil(fornecedoresFiltrados.length / limitPerPage);
   }, [fornecedoresFiltrados, limitPerPage]);
 
-  // Obter os fornecedores da página atual
   const fornecedoresPaginados = useMemo(() => {
     const startIndex = (currentPage - 1) * limitPerPage;
     const endIndex = startIndex + limitPerPage;
@@ -53,49 +50,36 @@ export function useFornecedores() {
     setCurrentPage(page);
   };
 
-  const salvarFornecedor = (fornecedor: Fornecedor) => {
-    if (fornecedor.id) {
-      axios
-        .put(`${dbUrl}/fornecedores/${fornecedor.id}`, fornecedor)
-        .then(() => {
-          const fornecedoresAtualizados = fornecedores.map((f) =>
-            f.id === fornecedor.id ? fornecedor : f
-          );
-          setFornecedores(fornecedoresAtualizados);
-          setCurrentPage(1);
-        })
-        .catch((error) => {
-          console.error("Erro ao editar fornecedor:", error);
-        });
-    } else {
-      axios
-        .post(`${dbUrl}/fornecedores`, {
+  const salvarFornecedor = async (fornecedor: Fornecedor): Promise<void> => {
+    try {
+      if (fornecedor.id) {
+        await axios.put(`${dbUrl}/fornecedores/${fornecedor.id}`, fornecedor);
+        setFornecedores((prev) =>
+          prev.map((f) => (f.id === fornecedor.id ? fornecedor : f))
+        );
+      } else {
+        const response = await axios.post(`${dbUrl}/fornecedores`, {
           ...fornecedor,
           id: uuidv4(),
-        })
-        .then((response) => {
-          const novoFornecedor = response.data;
-          const fornecedoresAtualizados = [novoFornecedor, ...fornecedores];
-          setFornecedores(fornecedoresAtualizados);
-          setCurrentPage(1);
-        })
-        .catch((error) => {
-          console.error("Erro ao adicionar fornecedor:", error);
         });
+        setFornecedores((prev) => [response.data, ...prev]);
+      }
+      setCurrentPage(1);
+    } catch (error) {
+      console.error("Erro ao salvar fornecedor:", error);
+      throw error;
     }
   };
 
-  const excluirFornecedor = (id: string) => {
-    axios
-      .delete(`${dbUrl}/fornecedores/${id}`)
-      .then(() => {
-        const fornecedoresAtualizados = fornecedores.filter((f) => f.id !== id);
-        setFornecedores(fornecedoresAtualizados);
-        setCurrentPage(1);
-      })
-      .catch((error) => {
-        console.error("Erro ao excluir fornecedor:", error);
-      });
+  const excluirFornecedor = async (id: string): Promise<void> => {
+    try {
+      await axios.delete(`${dbUrl}/fornecedores/${id}`);
+      setFornecedores((prev) => prev.filter((f) => f.id !== id));
+      setCurrentPage(1);
+    } catch (error) {
+      console.error("Erro ao excluir fornecedor:", error);
+      throw error;
+    }
   };
 
   return {

@@ -17,22 +17,23 @@ export const Button = styled.button<ButtonProps>`
   transition: background-color 0.2s, color 0.2s;
 
   /* Variantes */
-  ${({ variant }) =>
+  ${({ variant, theme }) =>
     variant === "ghost"
       ? `
         background-color: transparent;
-        border: 1px solid #e2e8f0;
-        color: #4a5568;
+        border: 1px solid ${theme.colors.textSecondary};
+        color: ${theme.colors.textPrimary};
         &:hover {
-          background-color: #f7fafc;
+          background-color: ${theme.colors.surface};
+          color: ${theme.colors.primary};
         }
       `
       : `
-        background-color: #3182ce;
+        background-color: ${theme.colors.primary};
         border: none;
-        color: white;
+        color: ${theme.colors.textOnPrimary};
         &:hover {
-          background-color: #2c5282;
+          background-color: ${theme.colors.secondary};
         }
       `}
 

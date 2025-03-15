@@ -12,6 +12,7 @@ import {
 import { Button } from "../ui/Button/button";
 import { Fornecedor } from "../Fornecedores/fornecedor.type";
 import { FornecedorForm } from "../FornecedorForm/fornecedor-form";
+import styled from "styled-components";
 
 const formSchema = yup.object({
   id: yup.string().optional(),
@@ -31,7 +32,7 @@ const formSchema = yup.object({
       yup.object().shape({
         nome: yup
           .string()
-          .required("Nome do contato é obrigatório")
+          .required("Nome é obrigatório")
           .matches(/^[a-zA-Z ]*$/, "Nome deve ser alfabético"),
         telefone: yup
           .string()
@@ -73,6 +74,15 @@ interface ModalFornecedorProps {
   onSalvar: (fornecedor: Fornecedor) => void;
   fornecedor: Fornecedor | null;
 }
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding-right: 0.5rem;
+`;
 
 export function ModalFornecedor({
   aberto,
@@ -132,16 +142,7 @@ export function ModalFornecedor({
           </DialogTitle>
         </DialogHeader>
         <FormProvider {...form}>
-          <form
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              overflowY: "scroll",
-              height: "80vh",
-            }}
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
+          <FormContainer onSubmit={form.handleSubmit(onSubmit)}>
             <FornecedorForm />
             <DialogFooter>
               <Button type="button" variant="ghost" onClick={onFechar}>
@@ -149,7 +150,7 @@ export function ModalFornecedor({
               </Button>
               <Button type="submit">Salvar</Button>
             </DialogFooter>
-          </form>
+          </FormContainer>
         </FormProvider>
       </DialogContent>
     </Dialog>

@@ -21,6 +21,8 @@ export function FornecedoresPagination({
 }: FornecedoresPaginationProps) {
   const maxVisiblePages = 5;
 
+  if (totalPages === 0) return null;
+
   const getVisiblePages = () => {
     const pages = [];
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -42,7 +44,9 @@ export function FornecedoresPagination({
 
   return (
     <Pagination>
-      <PaginationContent style={{ width: "350px", justifyContent: "space-between" }}>
+      <PaginationContent
+        style={{ width: 350, justifyContent: "space-between" }}
+      >
         <PaginationItem>
           <PaginationPrevious
             onClick={() => onPageChange(Math.max(currentPage - 1, 1))}

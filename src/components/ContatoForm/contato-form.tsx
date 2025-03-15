@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "../ui/Form/form";
 import { formatTelefone } from "../../utils/formatTelefone";
+import { Trash2 } from "lucide-react";
 
 const ContatoWrapper = styled.div`
   display: flex;
@@ -21,15 +22,17 @@ const ContatoWrapper = styled.div`
     align-items: flex-start;
   }
 `;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  margin-top: 28px;
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 0px;
   }
 `;
 
@@ -39,6 +42,10 @@ export function ContatoForm() {
     control,
     name: "contatos",
   });
+
+  if (fields.length === 0) {
+    append({ nome: "", telefone: "" });
+  }
 
   return (
     <>
@@ -79,9 +86,11 @@ export function ContatoForm() {
             )}
           />
           <ButtonWrapper>
-            <Button type="button" onClick={() => remove(index)}>
-              Remover
-            </Button>
+            {fields.length > 1 && (
+              <Button type="button" onClick={() => remove(index)}>
+                <Trash2 />
+              </Button>
+            )}
           </ButtonWrapper>
         </ContatoWrapper>
       ))}

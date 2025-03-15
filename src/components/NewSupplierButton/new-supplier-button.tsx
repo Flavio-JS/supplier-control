@@ -4,6 +4,14 @@ import styled from "styled-components";
 
 const NewButton = styled(Button)`
   width: 100%;
+  background-color: ${({ theme }) =>
+    theme.colors.primary};
+  color: ${({ theme }) => theme.colors.textOnPrimary};
+
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.colors.secondary};
+  }
 
   @media (min-width: 640px) {
     width: auto;

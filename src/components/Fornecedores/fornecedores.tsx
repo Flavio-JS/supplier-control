@@ -15,12 +15,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.textPrimary};
+  padding: 1.5rem;
+  border-radius: 8px;
 `;
 
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: ${({ theme }) => theme.colors.surface};
+  padding: 1rem;
+  border-radius: 8px;
 
   @media (min-width: 640px) {
     flex-direction: row;
@@ -100,23 +107,41 @@ export function Fornecedores() {
     }, 3000);
   };
 
-  const handleSalvarFornecedor = (fornecedor: Fornecedor) => {
-    salvarFornecedor(fornecedor);
-    fecharModal();
-    exibirAlert(
-      "Sucesso",
-      fornecedor.id
-        ? "Fornecedor editado com sucesso!"
-        : "Fornecedor adicionado com sucesso!",
-      "sucesso"
-    );
+  const handleSalvarFornecedor = async (fornecedor: Fornecedor) => {
+    try {
+      await salvarFornecedor(fornecedor);
+      fecharModal();
+      exibirAlert(
+        "Sucesso",
+        fornecedor.id
+          ? "Fornecedor editado com sucesso!"
+          : "Fornecedor adicionado com sucesso!",
+        "sucesso"
+      );
+    } catch (error) {
+      console.error("Erro ao salvar fornecedor:", error);
+      exibirAlert(
+        "Erro",
+        "Falha ao salvar fornecedor. Tente novamente.",
+        "erro"
+      );
+    }
   };
 
-  const handleExcluirFornecedor = () => {
+  const handleExcluirFornecedor = async () => {
     if (fornecedorAtual) {
-      excluirFornecedor(fornecedorAtual.id);
-      fecharModalExclusao();
-      exibirAlert("Sucesso", "Fornecedor excluído com sucesso!", "sucesso");
+      try {
+        await excluirFornecedor(fornecedorAtual.id);
+        fecharModalExclusao();
+        exibirAlert("Sucesso", "Fornecedor excluído com sucesso!", "sucesso");
+      } catch (error) {
+        console.error("Erro ao excluir fornecedor:", error);
+        exibirAlert(
+          "Erro",
+          "Falha ao excluir fornecedor. Tente novamente.",
+          "erro"
+        );
+      }
     }
   };
 
