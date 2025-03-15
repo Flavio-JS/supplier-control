@@ -10,6 +10,7 @@ import { ConfirmationModal } from "../ConfirmationModal/confirmation-modal";
 import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
 import { SuppliersPagination } from "../SuppliersPagination/suppliers-pagination";
 import { ModalView } from "../ModalView/modal-view";
+import { Button } from "../ui/Button/button";
 
 const Container = styled.div`
   display: flex;
@@ -45,6 +46,7 @@ export function Suppliers() {
     currentPage,
     totalPages,
     goToPage,
+    exportToCSV,
   } = useSuppliers();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -155,6 +157,7 @@ export function Suppliers() {
         <SearchContainer>
           <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} />
           <NewSupplierButton onClick={() => openModal()} />
+          <Button onClick={exportToCSV}>Exportar CSV</Button>
         </SearchContainer>
 
         <SuppliersTable

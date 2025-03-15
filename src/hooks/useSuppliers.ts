@@ -82,6 +82,59 @@ export function useSuppliers() {
     }
   };
 
+  const exportToCSV = () => {
+    const headers = [
+      "ID",
+      "Nome",
+      "Descrição",
+      "CEP",
+      "Estado",
+      "Cidade",
+      "Rua",
+      "Número",
+      "Referência",
+      "Contatos (Nome)",
+      "Contatos (Telefone)",
+    ];
+
+    const rows = suppliers.map((supplier) => {
+      const contactNames = supplier.contacts
+        .map((contact) => contact.name)
+        .join(";");
+      const contactPhones = supplier.contacts
+        .map((contact) => contact.telephone)
+        .join(";");
+
+      return [
+        supplier.id,
+        supplier.name,
+        supplier.description || "",
+        supplier.address.zipCode,
+        supplier.address.state,
+        supplier.address.city,
+        supplier.address.street,
+        supplier.address.number,
+        supplier.address.reference || "",
+        contactNames,
+        contactPhones,
+      ]
+        .map((value) => `"${value}"`)
+        .join("\t");
+    });
+
+    const csvContent = `\uFEFF${headers
+      .map((h) => `"${h}"`)
+      .join("\t")}\n${rows.join("\n")}`;
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", "fornecedores.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return {
     suppliers: pagedSuppliers,
     searchTerm,
@@ -91,5 +144,6 @@ export function useSuppliers() {
     currentPage,
     totalPages,
     goToPage,
+    exportToCSV,
   };
 }
