@@ -9,6 +9,7 @@ import { ModalFornecedor } from "../ModalFornecedor/modal-fornecedor";
 import { ModalConfirmacao } from "../ModalConfirmacao/modal-confirmacao";
 import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
 import { FornecedoresPagination } from "../FornecedoresPagination/fornecedores-pagination";
+import { ModalVisualizacao } from "../ModalVisualizacao/modal-visualizacao";
 
 const Container = styled.div`
   display: flex;
@@ -41,6 +42,10 @@ export function Fornecedores() {
 
   const [modalAberto, setModalAberto] = useState(false);
   const [modalExclusaoAberto, setModalExclusaoAberto] = useState(false);
+  const [modalVisualizacaoAberto, setModalVisualizacaoAberto] = useState(false);
+  const [fornecedorSelecionado, setFornecedorSelecionado] =
+    useState<Fornecedor | null>(null);
+
   const [fornecedorAtual, setFornecedorAtual] = useState<Fornecedor | null>(
     null
   );
@@ -60,6 +65,11 @@ export function Fornecedores() {
     setModalExclusaoAberto(true);
   };
 
+  const abrirModalVisualizacao = (fornecedor: Fornecedor) => {
+    setFornecedorSelecionado(fornecedor);
+    setModalVisualizacaoAberto(true);
+  };
+
   const fecharModal = () => {
     setModalAberto(false);
     setFornecedorAtual(null);
@@ -68,6 +78,11 @@ export function Fornecedores() {
   const fecharModalExclusao = () => {
     setModalExclusaoAberto(false);
     setFornecedorAtual(null);
+  };
+
+  const fecharModalVisualizacao = () => {
+    setModalVisualizacaoAberto(false);
+    setFornecedorSelecionado(null);
   };
 
   const exibirAlert = (
@@ -128,6 +143,7 @@ export function Fornecedores() {
           fornecedores={fornecedoresPaginados}
           onEditar={abrirModal}
           onExcluir={abrirModalExclusao}
+          onVisualizar={abrirModalVisualizacao}
         />
 
         <ModalFornecedor
@@ -135,6 +151,12 @@ export function Fornecedores() {
           onFechar={fecharModal}
           onSalvar={handleSalvarFornecedor}
           fornecedor={fornecedorAtual}
+        />
+
+        <ModalVisualizacao
+          aberto={modalVisualizacaoAberto}
+          onFechar={fecharModalVisualizacao}
+          fornecedor={fornecedorSelecionado}
         />
 
         <ModalConfirmacao

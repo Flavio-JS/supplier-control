@@ -1,4 +1,4 @@
-import { Edit, MessageCircle, Trash2 } from "lucide-react";
+import { Edit, MessageCircle, Trash2, Eye } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -17,6 +17,7 @@ interface TabelaFornecedoresProps {
   fornecedores: Fornecedor[];
   onEditar: (fornecedor: Fornecedor) => void;
   onExcluir: (fornecedor: Fornecedor) => void;
+  onVisualizar: (fornecedor: Fornecedor) => void;
 }
 
 const ResponsiveTable = styled.div`
@@ -43,10 +44,17 @@ const IconWrapper = styled.a`
   }
 `;
 
+const MobileOnlyButton = styled(Button)`
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
 export function TabelaFornecedores({
   fornecedores,
   onEditar,
   onExcluir,
+  onVisualizar,
 }: TabelaFornecedoresProps) {
   return (
     <ResponsiveTable>
@@ -64,7 +72,7 @@ export function TabelaFornecedores({
           {!fornecedores || fornecedores.length === 0 ? (
             <TableRow>
               <TableCell
-                colSpan={5} // Ajuste para o número de colunas visíveis
+                colSpan={5}
                 style={{
                   textAlign: "center",
                   padding: "1.5rem",
@@ -105,6 +113,7 @@ export function TabelaFornecedores({
                         style={{
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-between",
                           gap: "8px",
                         }}
                       >
@@ -143,29 +152,28 @@ export function TabelaFornecedores({
                       gap: "0.5rem",
                     }}
                   >
+                    <MobileOnlyButton
+                      variant="ghost"
+                      size="small"
+                      onClick={() => onVisualizar(fornecedor)}
+                    >
+                      <Eye style={{ height: "1rem", width: "1rem" }} />
+                    </MobileOnlyButton>
+
                     <Button
                       variant="ghost"
                       size="small"
                       onClick={() => onEditar(fornecedor)}
                     >
                       <Edit style={{ height: "1rem", width: "1rem" }} />
-                      <span
-                        style={{ visibility: "hidden", position: "absolute" }}
-                      >
-                        Editar
-                      </span>
                     </Button>
+
                     <Button
                       variant="ghost"
                       size="small"
                       onClick={() => onExcluir(fornecedor)}
                     >
                       <Trash2 style={{ height: "1rem", width: "1rem" }} />
-                      <span
-                        style={{ visibility: "hidden", position: "absolute" }}
-                      >
-                        Excluir
-                      </span>
                     </Button>
                   </div>
                 </TableCell>

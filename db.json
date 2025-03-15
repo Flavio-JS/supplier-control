@@ -649,7 +649,7 @@
     },
     {
       "id": "4da4c516-8e2a-4e39-b865-f3f23fe4a152",
-      "nome": "EletroTech Solucoes",
+      "nome": "EletroTech Solucoe",
       "descricao": "Fornecedor de produtos e servicos variados",
       "contatos": [
         {
@@ -835,25 +835,6 @@
         "logradouro": "Rua dos Comerciantes",
         "numero": "1547",
         "referencia": "Proximo ao Shopping Center"
-      }
-    },
-    {
-      "id": "6c90ddbc-eaae-442d-a916-dca2a0a8cd7b",
-      "nome": "Manutencao Express",
-      "descricao": "Fornecedor de produtos e servicos variados",
-      "contatos": [
-        {
-          "nome": "Carlos",
-          "telefone": "(12) 92399-6828"
-        }
-      ],
-      "endereco": {
-        "cep": "74573-144",
-        "estado": "PR",
-        "cidade": "Curitiba",
-        "logradouro": "Alameda das Rosas",
-        "numero": "4425",
-        "referencia": "Em frente a Praca Central"
       }
     }
   ]
