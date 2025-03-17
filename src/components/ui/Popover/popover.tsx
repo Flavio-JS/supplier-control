@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const Popover = PopoverPrimitive.Root;
 
-// Substitua o PopoverTrigger original pelo StyledPopoverTrigger
 const PopoverTrigger = styled(PopoverPrimitive.Trigger)<{
   variant?: "primary" | "ghost" | "outline";
   size?: "small" | "medium" | "large";
