@@ -8,6 +8,18 @@ export function useSuppliers() {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
+  const [modalViewOpen, setModalViewOpen] = useState(false);
+  const [supplierSelected, setSupplierSelected] = useState<Supplier | null>(
+    null
+  );
+  const [currentSupplier, setCurrentSupplier] = useState<Supplier | null>(null);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState<"success" | "error">("success");
+
   const limitPerPage = import.meta.env.VITE_LIMIT_PER_PAGE
     ? parseInt(import.meta.env.VITE_LIMIT_PER_PAGE)
     : 5;
@@ -66,19 +78,42 @@ export function useSuppliers() {
         setSuppliers((prev) => [response.data, ...prev]);
       }
       setCurrentPage(1);
+      showAlert(
+        "Sucesso",
+        supplier.id
+          ? "Fornecedor editado com sucesso!"
+          : "Fornecedor adicionado com sucesso!",
+        "success"
+      );
     } catch (error) {
       console.error("Erro ao salvar fornecedor:", error);
+      showAlert(
+        "Erro",
+        "Falha ao salvar fornecedor. Tente novamente.",
+        "error"
+      );
       throw error;
     }
   };
 
-  const deleteSupplier = async (id: string): Promise<void> => {
+  const deleteSupplier = async (id: string | undefined): Promise<void> => {
+    if (!id) {
+      console.error("ID do fornecedor não encontrado");
+      return;
+    }
+
     try {
       await axios.delete(`${dbUrl}/suppliers/${id}`);
       setSuppliers((prev) => prev.filter((f) => f.id !== id));
       setCurrentPage(1);
+      showAlert("Sucesso", "Fornecedor excluído com sucesso!", "success");
     } catch (error) {
       console.error("Erro ao excluir fornecedor:", error);
+      showAlert(
+        "Erro",
+        "Falha ao excluir fornecedor. Tente novamente.",
+        "error"
+      );
       throw error;
     }
   };
@@ -185,6 +220,51 @@ export function useSuppliers() {
     XLSX.writeFile(workbook, "fornecedores.xlsx");
   };
 
+  const openModal = (supplier: Supplier | null = null) => {
+    setCurrentSupplier(supplier);
+    setModalOpen(true);
+  };
+
+  const openModalDelete = (supplier: Supplier) => {
+    setCurrentSupplier(supplier);
+    setModalDeleteOpen(true);
+  };
+
+  const openModalView = (supplier: Supplier) => {
+    setSupplierSelected(supplier);
+    setModalViewOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setCurrentSupplier(null);
+  };
+
+  const closeModalDelete = () => {
+    setModalDeleteOpen(false);
+    setCurrentSupplier(null);
+  };
+
+  const closeModalView = () => {
+    setModalViewOpen(false);
+    setSupplierSelected(null);
+  };
+
+  const showAlert = (
+    title: string,
+    message: string,
+    type: "success" | "error"
+  ) => {
+    setAlertTitle(title);
+    setAlertMessage(message);
+    setAlertType(type);
+    setAlertOpen(true);
+
+    setTimeout(() => {
+      setAlertOpen(false);
+    }, 3000);
+  };
+
   return {
     suppliers: pagedSuppliers,
     searchTerm,
@@ -196,5 +276,22 @@ export function useSuppliers() {
     goToPage,
     exportToCSV,
     exportToExcel,
+    modalOpen,
+    modalDeleteOpen,
+    modalViewOpen,
+    supplierSelected,
+    currentSupplier,
+    alertOpen,
+    setAlertOpen,
+    alertTitle,
+    alertMessage,
+    alertType,
+    openModal,
+    openModalDelete,
+    openModalView,
+    closeModal,
+    closeModalDelete,
+    closeModalView,
+    showAlert,
   };
 }

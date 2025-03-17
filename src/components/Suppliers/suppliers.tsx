@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useSuppliers } from "../../hooks/useSuppliers";
-import { Supplier } from "./supplier.type";
 import styled from "styled-components";
 import { SearchBar } from "../SearchBar/search-bar";
 import { NewSupplierButton } from "../NewSupplierButton/new-supplier-button";
@@ -10,9 +8,7 @@ import { ConfirmationModal } from "../ConfirmationModal/confirmation-modal";
 import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
 import { SuppliersPagination } from "../SuppliersPagination/suppliers-pagination";
 import { ModalView } from "../ModalView/modal-view";
-import { Button } from "../ui/Button/button";
-import { ExternalLink } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/Popover/popover";
+import { ExportOptionsPopover } from "../ExportOptionsPopover/export-options-popover";
 
 const Container = styled.div`
   display: flex;
@@ -42,197 +38,86 @@ export function Suppliers() {
   const {
     suppliers,
     searchTerm,
-    setSearchTerm,
-    saveSupplier,
-    deleteSupplier,
     currentPage,
     totalPages,
+    modalOpen,
+    modalDeleteOpen,
+    modalViewOpen,
+    supplierSelected,
+    currentSupplier,
+    alertOpen,
+    alertTitle,
+    alertMessage,
+    alertType,
+    openModal,
+    openModalDelete,
+    openModalView,
+    closeModal,
+    closeModalDelete,
+    closeModalView,
+    saveSupplier,
+    deleteSupplier,
+    setSearchTerm,
     goToPage,
     exportToCSV,
     exportToExcel,
+    setAlertOpen,
   } = useSuppliers();
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
-  const [modalViewOpen, setModalViewOpen] = useState(false);
-  const [supplierSelected, setSupplierSelected] = useState<Supplier | null>(
-    null
-  );
-
-  const [currentSupplier, setCurrentSupplier] = useState<Supplier | null>(null);
-
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [alertTitle, setAlertTitle] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertType, setAlertType] = useState<"success" | "error">("success");
-
-  const openModal = (supplier: Supplier | null = null) => {
-    setCurrentSupplier(supplier);
-    setModalOpen(true);
-  };
-
-  const openModalDelete = (supplier: Supplier) => {
-    setCurrentSupplier(supplier);
-    setModalDeleteOpen(true);
-  };
-
-  const openModalView = (supplier: Supplier) => {
-    setSupplierSelected(supplier);
-    setModalViewOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setCurrentSupplier(null);
-  };
-
-  const closeModalDelete = () => {
-    setModalDeleteOpen(false);
-    setCurrentSupplier(null);
-  };
-
-  const closeModalView = () => {
-    setModalViewOpen(false);
-    setSupplierSelected(null);
-  };
-
-  const showAlert = (
-    title: string,
-    message: string,
-    type: "success" | "error"
-  ) => {
-    setAlertTitle(title);
-    setAlertMessage(message);
-    setAlertType(type);
-    setAlertOpen(true);
-
-    setTimeout(() => {
-      setAlertOpen(false);
-    }, 3000);
-  };
-
-  const handleSaveSupplier = async (supplier: Supplier) => {
-    try {
-      await saveSupplier(supplier);
-      closeModal();
-      showAlert(
-        "Sucesso",
-        supplier.id
-          ? "Fornecedor editado com sucesso!"
-          : "Fornecedor adicionado com sucesso!",
-        "success"
-      );
-    } catch (error) {
-      console.error("Erro ao salvar fornecedor:", error);
-      showAlert(
-        "Erro",
-        "Falha ao salvar fornecedor. Tente novamente.",
-        "error"
-      );
-    }
-  };
-
-  const handleDeleteSupplier = async () => {
-    if (currentSupplier) {
-      try {
-        await deleteSupplier(currentSupplier.id);
-        closeModalDelete();
-        showAlert("Sucesso", "Fornecedor excluído com sucesso!", "success");
-      } catch (error) {
-        console.error("Erro ao excluir fornecedor:", error);
-        showAlert(
-          "Erro",
-          "Falha ao excluir fornecedor. Tente novamente.",
-          "error"
-        );
-      }
-    }
-  };
-
-  const handleSearch = (value: string) => {
-    goToPage(1);
-    setSearchTerm(value);
-  };
-
   return (
-    <>
-      <Container>
-        <SearchContainer>
-          <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} />
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <NewSupplierButton onClick={() => openModal()} />
-            <Popover>
-              <PopoverTrigger variant="ghost" size="medium">
-                <ExternalLink />
-              </PopoverTrigger>
-              <PopoverContent
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                }}
-              >
-                <Button
-                  variant="ghost"
-                  style={{ gap: "0.5rem" }}
-                  onClick={exportToCSV}
-                >
-                  <ExternalLink /> CSV
-                </Button>
-                <Button
-                  variant="ghost"
-                  style={{ gap: "0.5rem" }}
-                  onClick={exportToExcel}
-                >
-                  <ExternalLink /> XLSX
-                </Button>
-              </PopoverContent>
-            </Popover>
-          </div>
-        </SearchContainer>
+    <Container>
+      <SearchContainer>
+        <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <NewSupplierButton onClick={() => openModal()} />
+          <ExportOptionsPopover
+            onExportCSV={exportToCSV}
+            onExportExcel={exportToExcel}
+          />
+        </div>
+      </SearchContainer>
 
-        <SuppliersTable
-          suppliers={suppliers}
-          onEdit={openModal}
-          onDelete={openModalDelete}
-          onView={openModalView}
-        />
+      <SuppliersTable
+        suppliers={suppliers}
+        onEdit={openModal}
+        onDelete={openModalDelete}
+        onView={openModalView}
+      />
 
-        <SupplierModal
-          isOpen={modalOpen}
-          onClose={closeModal}
-          onSave={handleSaveSupplier}
-          supplier={currentSupplier}
-        />
+      <SupplierModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        onSave={saveSupplier}
+        supplier={currentSupplier}
+      />
 
-        <SuppliersPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={goToPage}
-        />
+      <SuppliersPagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={goToPage}
+      />
 
-        <ModalView
-          open={modalViewOpen}
-          onClose={closeModalView}
-          supplier={supplierSelected}
-        />
+      <ModalView
+        open={modalViewOpen}
+        onClose={closeModalView}
+        supplier={supplierSelected}
+      />
 
-        <ConfirmationModal
-          isOpen={modalDeleteOpen}
-          onClose={closeModalDelete}
-          onConfirm={handleDeleteSupplier}
-          title="Excluir Fornecedor"
-          message={`Tem certeza que deseja excluir o fornecedor "${currentSupplier?.name}"? Esta ação não pode ser desfeita.`}
-        />
+      <ConfirmationModal
+        isOpen={modalDeleteOpen}
+        onClose={closeModalDelete}
+        onConfirm={() => deleteSupplier(currentSupplier?.id)}
+        title="Excluir Fornecedor"
+        message={`Tem certeza que deseja excluir o fornecedor "${currentSupplier?.name}"? Esta ação não pode ser desfeita.`}
+      />
 
-        <CustomAlertDialog
-          open={alertOpen}
-          onOpenChange={setAlertOpen}
-          title={alertTitle}
-          message={alertMessage}
-          type={alertType}
-        />
-      </Container>
-    </>
+      <CustomAlertDialog
+        open={alertOpen}
+        onOpenChange={setAlertOpen}
+        title={alertTitle}
+        message={alertMessage}
+        type={alertType}
+      />
+    </Container>
   );
 }
