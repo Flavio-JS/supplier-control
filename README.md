@@ -1,6 +1,6 @@
-![image](https://github.com/user-attachments/assets/604d6ed3-a623-434c-a1e0-1fa99112dcd2)
-![image](https://github.com/user-attachments/assets/af043fb3-9dc9-4b12-b495-cebf19547fa3)
-![image](https://github.com/user-attachments/assets/ab1de52d-129b-4292-91e7-58367023f68f)
+![image](https://github.com/user-attachments/assets/df89af1a-79ba-479f-90de-04c3074f3c24)
+![image](https://github.com/user-attachments/assets/1a01c1cd-954b-47d5-a986-4d78600c4142)
+![image](https://github.com/user-attachments/assets/c26653e6-dd2a-4639-b28d-2ef670d6e61b)
 
 # Supplier Control
 
