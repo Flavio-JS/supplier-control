@@ -67,6 +67,12 @@ const EmptyCell = styled(TableCell)`
   color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
+const PopoverWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 export function SuppliersTable({
   suppliers,
   onEdit,
@@ -93,10 +99,12 @@ export function SuppliersTable({
 
   return (
     <ResponsiveTable>
-      <ColumnControlPopover
-        columns={visibleColumns}
-        onToggleColumn={handleToggleColumn}
-      />
+      <PopoverWrapper>
+        <ColumnControlPopover
+          columns={visibleColumns}
+          onToggleColumn={handleToggleColumn}
+        />
+      </PopoverWrapper>
 
       <Table>
         <TableHeader>
