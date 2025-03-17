@@ -2,7 +2,7 @@ import { useSuppliers } from "../../hooks/useSuppliers";
 import styled from "styled-components";
 import { SearchBar } from "../SearchBar/search-bar";
 import { NewSupplierButton } from "../NewSupplierButton/new-supplier-button";
-import { SuppliersTable } from "../SuppliersTable/suppliers-table.";
+import { SuppliersTable } from "../SuppliersTable/suppliers-table";
 import { SupplierModal } from "../SupplierModal/supplier-modal";
 import { ConfirmationModal } from "../ConfirmationModal/confirmation-modal";
 import { CustomAlertDialog } from "../CustomAlertDialog/custom-alert-dialog";
