@@ -17,8 +17,14 @@ const ColumnItem = styled.label`
   cursor: pointer;
 `;
 
+export interface Column {
+  id: string;
+  label: string;
+  visible: boolean;
+}
+
 interface ColumnControlPopoverProps {
-  columns: { id: string; label: string; visible: boolean }[];
+  columns: Column[];
   onToggleColumn: (columnId: string) => void;
 }
 
@@ -29,7 +35,9 @@ export function ColumnControlPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button style={{ margin: "16px" }} variant="outline">Colunas</Button>
+        <Button style={{ margin: "16px" }} variant="outline">
+          Colunas
+        </Button>
       </PopoverTrigger>
       <PopoverContent side="bottom" align="end">
         <PopoverArrow />

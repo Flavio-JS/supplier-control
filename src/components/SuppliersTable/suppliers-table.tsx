@@ -13,7 +13,10 @@ import { Button } from "../ui/Button/button";
 import styled from "styled-components";
 import { FormatedDescription } from "../FormatedDescription/formated-description";
 import { FormattedAddress } from "../FormattedAddress/formatted-address";
-import { ColumnControlPopover } from "../ColumnControlPopover/column-control-popover";
+import {
+  Column,
+  ColumnControlPopover,
+} from "../ColumnControlPopover/column-control-popover";
 
 interface SuppliersTableProps {
   suppliers: Supplier[];
@@ -79,7 +82,7 @@ export function SuppliersTable({
   onDelete,
   onView,
 }: SuppliersTableProps) {
-  const [visibleColumns, setVisibleColumns] = useState([
+  const [visibleColumns, setVisibleColumns] = useState<Column[]>([
     { id: "name", label: "Nome", visible: true },
     { id: "description", label: "Descrição", visible: true },
     { id: "contacts", label: "Contato(s)", visible: true },
