@@ -132,7 +132,6 @@ export function SupplierModal({
   }, [supplier, form]);
 
   const onSubmit = (values: yup.InferType<typeof formSchema>) => {
-    console.log({ values });
     onSave(values as Supplier);
   };
 
