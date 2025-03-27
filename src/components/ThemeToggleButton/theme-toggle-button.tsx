@@ -21,8 +21,8 @@ const ThemeToggleButton: React.FC = () => {
 
   return (
     <Select value={theme} onChange={handleThemeChange}>
-      <option value="light">Tema VExpenses (Claro)</option>
-      <option value="dark">Tema VExpenses (Escuro)</option>
+      <option value="light">Tema Primário (Claro)</option>
+      <option value="dark">Tema Primário (Escuro)</option>
       <option value="light2">Tema Secundário (Claro)</option>
       <option value="dark2">Tema Secundário (Escuro)</option>
     </Select>

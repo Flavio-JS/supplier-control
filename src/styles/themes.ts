@@ -1,11 +1,11 @@
-// Tema principal VExpenses
+// Tema principal 
 
 export const lightTheme = {
   colors: {
     // Cores principais
     primary: "#0082f5", // Azul médio (botões em fundo claro, shapes)
     secondary: "#4ac0ff", // Azul claro (palavras em destaque em fundo azul escuro)
-    accent: "#3fa1ff", // Azul logo (símbolo do VExpenses)
+    accent: "#3fa1ff", // Azul logo
 
     // Cores de fundo
     background: "#f9f9f9", // Cinza claro 2 (fundo claro)
@@ -29,7 +29,7 @@ export const darkTheme = {
     // Cores principais
     primary: "#0A8DFF", // Azul médio (botões em fundo claro, shapes)
     secondary: "#0074B3", // Azul claro (palavras em destaque em fundo azul escuro)
-    accent: "#0064C2", // Azul logo (símbolo do VExpenses)
+    accent: "#0064C2", // Azul logo
 
     // Cores de fundo
     background: "#050505", // Cinza claro 2 (fundo escuro)
